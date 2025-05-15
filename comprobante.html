@@ -1,0 +1,634 @@
+<html>
+<head>
+    <title>Factura Federal Parts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 800px;
+            margin: auto;
+            background-color: #a9dff9; /* Light blue background */
+        }
+        .container {
+            padding: 0;
+            background-color: #a9dff9;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .logo-section {
+            display: flex;
+            width: 45%;
+        }
+        .logo-fp {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+        .fp-text {
+            color: #FF0000; /* Red color for Federal Parts text */
+            letter-spacing: 7px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 23px;
+            font-weight: 800;
+            margin: 0;
+            
+        }
+        .repuestos-text {
+            letter-spacing: 2px;
+            font-size: 17px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .phone-numbers {
+            font-size: 14px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .blue-square {
+            width: 80px;
+            height: 80px;
+            background-color: #000080; /* Navy blue */
+            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .fp-logo {
+            color: #FF0000;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .company-box {
+            border: 1px solid #000;
+            padding: 18px;
+            margin-top: 10px;
+            background-color: white;
+            width: 85%;
+        }
+        .invoice-box {
+            display: flex;
+            gap:1rem;
+            align-items: center;
+            border: 1px solid #000;
+            padding: 8.5px;
+            background-color: white;
+            margin-top: 10px;
+        }
+        .tfact-box {
+            border: 1px solid #000;
+            padding: 9px 10px;
+            background-color: white;
+            width: 85%;
+        }
+
+        .tfact-box p {
+            text-align: center;
+            font-size: 30px;
+            margin-block-start: 10px;
+            margin-block-end: 10px;
+        }
+        .original-copy {
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 10px;
+            padding: 25px 0;
+        }
+        .factura-text {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .factura-num {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+        .date-section {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .side-logos {
+            display: flex;
+            flex-direction: column;
+            margin-right: 4rem;
+        }
+        .side-logo {
+            width: 100px;
+            height: 70px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bosch-logo {
+            background-color: #FF0000;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .stanadyne-logo {
+            background-color: #000080;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .delphi-logo {
+            background-color: #FF0000;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .denso-logo {
+            background-color: #FF0000;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .client-section {
+            border: 1px solid #000;
+            padding: 10px;
+            /* margin: 10px 20px; */
+            background-color: white;
+            display: flex;
+            min-height: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .items-table {
+            width: 100%;
+            background-color: white;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+        }
+        .items-table th {
+            /* border: 1px solid #000; */
+            padding: 5px;
+            text-align: center;
+            background-color: white;
+        }
+        .items-table td {
+            /* border: 1px solid #000; */
+            /* padding: 5px; */
+            text-align: center;
+        }
+        .totals-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 20px;
+            font-size: 12px;
+        }
+        .subtotal-section {
+            display: flex;
+            gap: 30px;
+        }
+        .total-amount {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .footer-section {
+            padding: 0 10px 10px 10px;
+            font-size: 12px;
+        }
+        .footer-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .consumer-protection {
+            font-size: 14px;
+            padding: 10px 0 10px 10px;
+            font-weight: bold;
+            width: 83.5%; 
+            margin-left: 8.4rem;
+            background-color: white;
+        }
+
+        .watermark { 
+            position: relative; 
+            height: 400px; /* Puedes ajustar este valor según necesites */
+        }
+
+/* Si necesitas filas vacías para rellenar */
+.empty-row td {
+    height: 20px; /* Altura de cada fila vacía */
+    border-bottom: none;
+}
+        .subtotal-section { 
+            display: block;
+            width: 40%; 
+            padding: 10px; 
+            font-size: 12px; 
+        }
+        .total-section { 
+            width: 60%; 
+            padding: 10px; 
+            text-align: right; 
+            font-size: 14px; 
+        }
+        @media print {
+            .invoice-page {
+                page-break-inside: avoid;
+            }
+            /* Reglas más específicas para ocultar elementos no deseados */
+            .no-print, .no-print * {
+                display: none !important;
+                visibility: hidden !important;
+            }
+            .vertical-blue-line {
+                position: absolute;
+                top: 49.5%;
+                left: 50%;
+                width: 1px;
+                height: 103px;
+                background-color: black;
+                /* Asegurarse que los colores se impriman */
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            /* Ocultar encabezados y pies de página del navegador */
+            @page {
+                margin: 0.5cm;
+                size: auto;
+                background-color: #a9dff9 !important;
+            }
+            
+            /* Oculta la barra de herramientas y direcciones de URL */
+            html {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* Oculta los elementos fuera del contenedor principal */
+            body > *:not(.container) {
+                display: none !important;
+            }
+            .invoice-page {
+                page-break-inside: avoid;
+            }
+            /* Oculta elementos específicos que podrían estar causando problemas */
+            .header-date, .print-timestamp, .browser-info {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="invoice-container">
+        <div class="header">
+            <button onclick="window.print()" class="no-print">Imprimir</button>
+            <div class="logo-section">
+                <img src='C:\Users\mlopez\Desktop\mlopez\CLIENTE 2\LOGO4.jpg' style=" width: 70px; height: 100px; display: block; ">
+                <div class="logo-fp">
+                    <div>
+                        <p class="fp-text">Federal Parts</p>
+                        <p class="repuestos-text">REPUESTOS AUTOMOTOR</p>
+                    </div>
+                    <div class="phone-numbers">
+                        <p style="margin: 0;">011-5713-7182</p>
+                        <p style="margin: 0;">011-4541-1361</p>
+                        <p style="margin: 0;">011-4541-2845</p>
+                    </div>
+                    <div class="company-box">
+                        <p style="margin: 2px 0;">FEDERAL PARTS S.R.L.</p>
+                        <p style="margin: 2px 0;">JARAMILLO 3060 (1430)</p>
+                        <p style="margin: 2px 0;">CIUDAD AUTONOMA DE BS. AS.</p>
+                        <p style="margin: 2px 0;">IVA RESPONSABLE INSCRIPTO</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="tfact-box">
+                    <p>A</p>
+                </div>
+            </div>
+            <div style="width: 25rem;">
+                <div class="original-copy">ORIGINAL BLANCO / COPIA COLOR</div>
+                <div class="invoice-box">
+                    <div class="factura-text">Factura</div>
+                    <div class="factura-num">N°0001-00019478</div>
+                </div>
+                <div class="invoice-box">
+                    <div class="date-section">
+                        <p style="margin: 2px 0;">Fecha: 11/09/2020</p>
+                        <p style="margin: 2px 0;">C.U.I.T.: 30715978735</p>
+                        <p style="margin: 2px 0;">Ingresos Brutos: 1547261-2</p>
+                        <p style="margin: 2px 0;">Inicio de Actividades: 01/03/2018</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="display: flex;">
+            <div class="side-logos">
+                <img src='C:\Users\mlopez\Desktop\mlopez\CLIENTE 2\LOGO5.jpg' style=" width: 53px; height: 120px; display: block;">
+                <img src='C:\Users\mlopez\Desktop\mlopez\CLIENTE 2\LOGO6.jpg' style=" width: 53px; height: 120px; display: block; margin-top: 10px;">
+                <img src='C:\Users\mlopez\Desktop\mlopez\CLIENTE 2\LOGO7.jpg' style=" width: 53px; height: 120px; display: block; margin-top: 10px;">
+                <img src='C:\Users\mlopez\Desktop\mlopez\CLIENTE 2\LOGO8.jpg' style=" width: 53px; height: 120px; display: block; margin-top: 10px;">
+            </div>
+            <div style="width: 85%;">
+                <div class="client-section">
+                    <!-- Client information would go here -->
+                </div>
+                <div class='watermark'>
+                        <table class="items-table" style="height: 80%;">
+                            <tr>
+                                <th>CANTIDAD</th>
+                                <th>DESCRIPCION</th>
+                                <th>PRECIO UNITARIO</th>
+                                <th>PRECIO NETO</th>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td style="text-align: left;">BULONES PERFORADOS 6mm</td>
+                                <td>100,00</td>
+                                <td>1.000,00</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td style="text-align: left;">BULONES PERFORADOS 10X1,25</td>
+                                <td>140,00</td>
+                                <td>840,00</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td style="text-align: left;">BULONES PE2F 20X1,50X48mm</td>
+                                <td>155,00</td>
+                                <td>1.860,00</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td style="text-align: left;">BULONES PE2F DOBLE 10mm</td>
+                                <td>145,00</td>
+                                <td>1.450,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011007</td>
+                                <td>5.250,00</td>
+                                <td>10.500,00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td style="text-align: left;">BOMBAS ALIMENTADORAS 0440011011</td>
+                                <td>4.840,00</td>
+                                <td>9.680,00</td>
+                            </tr>
+                        </table>
+                        <div style="padding-top: 10px; text-align: center; background-color: white; border-left: 1px solid black; border-right: 1px solid black;">
+                            <p class="fp-text">Federal Parts</p>
+                            <p class="repuestos-text">REPUESTOS AUTOMOTOR</p>
+                        </div>
+                        <div style="display: flex; padding-top: 15px; background-color: white; border-left: 1px solid black; border-right: 1px solid black;">
+                            <div class='subtotal-section'>
+                                <div style="display: flex; align-items: center; gap: 3rem;">
+                                    <div>SUBTOTAL</div>
+                                    <div style="width: 100px; flex-shrink: 0;">ALICUOTA IVA</div>
+                                    <div style="width: 90px; flex-shrink: 0;">IVA RECEP. IVA</div>
+                                    <div style="width: 90px; flex-shrink: 0;">RECEP. OTROS</div>
+                                    <div style="width: 180px; flex-shrink: 0;">CONCEPTOS NO GRAVADOS</div>
+                                </div>
+                                <div style="display: flex; margin-top: 5px;">
+                                    <div style="margin-right: 54px;">$10,000.00</div>
+                                    <div style="margin-right: 98px;">(21.00)</div>
+                                    <div style="margin-right: 320px;">$2,100.00</div>
+                                    <div>00.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 10px; text-align: -webkit-right; background-color: white; border-left: 1px solid black; border-right: 1px solid black;">
+                            <div style="width: 50%; text-align: right;">
+                                <div style="margin-top: 10px; font-weight: bold; font-size: 18px; text-align: right;">
+                                    <span style="margin-right: 10rem;">TOTAL $</span> 99.776,60
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 0 10px;  border-left: 1px solid black; border-right: 1px solid black; background-color: white;">
+                            <div>Recibi(mos):</div>
+                            <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                                <div style="margin-left: 70px; padding: 0 0 10px 0;">IMPORTE PAGADO</div>
+                                <div>0,00</div>
+                            </div>
+                        </div>
+                        <div class="footer-section" style="background-color: white; border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;">
+                            <div style="border-top: 1px dashed #000; padding-top: 10px; background-color: white;"></div>
+                            <div style="text-align: center;">Transporte: RETIRA CLIENTE</div>
+                            
+                            <div style="border-top: 1px dashed #000; margin: 5px 248px 0 313px; padding-top: 10px;"></div>
+                            <div style="border-top: 1px dashed #000; margin: 5px 248px 0 313px; padding-top: 10px;"></div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>((( FLETES A CARGO DEL CLIENTE )))</div> 
+                                    <div style="margin: 0px 76px 0 0;">00000000</div> 
+                                    <div>(70010045)</div>
+                                </div>
+                            <div style="border-top: 1px dashed #000; margin: 10px 0 0 0; padding-top: 10px;"></div>
+                            <div>
+                                <div>C.A.I. N° 0765-38126509472</div>
+                                <div>Fecha de Vencimiento: 11/09/2020</div>
+                                <div style="display: flex; justify-content: flex-start; gap:3rem">
+                                    <div style="margin-left: 10px; font-style: italic;">CF</div>
+                                    <div>HHG1614169</div>
+                                </div>
+                                <div style="margin-left: 5px; font-style: italic;">DGI</div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>   
+        <div style="width: 84.8%; margin-left: 8.4rem; background-color: white; border-left: 1px solid black; border-right: 1px solid black;">
+    </div>     
+        <div class="consumer-protection" style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; ">
+            147: Teléfono Gratuito C.A.B.A., Area de Defensa y Protección al Consumidor
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const MAX_PRODUCTS_PER_PAGE = 10; // Adjust this based on your page's capacity
+        const originalInvoice = document.querySelector('.container');
+        const invoiceContainer = document.getElementById('invoice-container');
+        const itemsTable = originalInvoice.querySelector('.items-table');
+        const itemRows = itemsTable.querySelectorAll('tr:not(:first-child)');
+
+        function createInvoicePage(pageNumber, startIndex, endIndex) {
+            const clonedInvoice = originalInvoice.cloneNode(true);
+            const clonedItemsTable = clonedInvoice.querySelector('.items-table');
+            
+            // Clear existing rows
+            while (clonedItemsTable.rows.length > 1) {
+                clonedItemsTable.deleteRow(1);
+            }
+
+            // Copy header row
+            const headerRow = itemsTable.rows[0].cloneNode(true);
+            clonedItemsTable.appendChild(headerRow);
+
+            // Add selected product rows
+            for (let i = startIndex; i <= endIndex; i++) {
+                const row = itemRows[i].cloneNode(true);
+                clonedItemsTable.appendChild(row);
+            }
+
+            // Modify page indicators
+            const originalCopy = clonedInvoice.querySelector('.original-copy');
+            originalCopy.textContent = `ORIGINAL BLANCO / COPIA COLOR - Página ${pageNumber}`;
+
+            const invoiceNumberEl = clonedInvoice.querySelector('.factura-num');
+            invoiceNumberEl.textContent += `-${pageNumber}`;
+
+            // Add page break class for print
+            clonedInvoice.classList.add('invoice-page');
+            if (pageNumber > 1) {
+                const pageBreak = document.createElement('div');
+                pageBreak.classList.add('page-break');
+                invoiceContainer.appendChild(pageBreak);
+            }
+
+            invoiceContainer.appendChild(clonedInvoice);
+        }
+
+        function splitInvoice() {
+            const totalProducts = itemRows.length;
+            let pageNumber = 1;
+
+            for (let i = 0; i < totalProducts; i += MAX_PRODUCTS_PER_PAGE) {
+                const startIndex = i;
+                const endIndex = Math.min(i + MAX_PRODUCTS_PER_PAGE - 1, totalProducts - 1);
+                
+                createInvoicePage(pageNumber, startIndex, endIndex);
+                pageNumber++;
+            }
+
+            // Remove the original invoice
+            originalInvoice.remove();
+        }
+
+        // Call split invoice function
+        splitInvoice();
+    });
+</script>
+</html>

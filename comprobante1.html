@@ -1,0 +1,233 @@
+<html><head><title>Factura</title></head><body>
+<style>
+body { font-family: Arial, sans-serif; width: 800px; margin: auto; }
+.container { border: 1px solid #000; padding: 0; }
+.header { display: flex; border-bottom: 1px solid #000; position: relative; }
+.logo-section { width: 50%; padding: 10px; }
+.logo { width: 350px; display: block; }
+.company-info { font-size: 12px; margin: 0; }
+.company-space { margin-bottom: 15px; }
+.company-margin { margin: 0 50px;}	
+.company-name { font-weight: bold; }
+.email { color: blue; }
+.letter-box {  width: 7%; display: flex; flex-direction: column; height: 100%; /* Añadir posición relativa */ }
+.vertical-blue-line {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: 1px;
+  height: 111px;
+  background-color: black;
+  /* Asegurarse que los colores se impriman */
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+.letter { font-size: 36px; 
+  text-align: center;
+  height: 100%; /* Ocupa todo el alto disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;}
+.letter-border { 
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  height: 100%; /* Ocupa todo el alto disponible */
+  display: flex;
+  align-items: center; /* Centra el contenido verticalmente */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  min-height: 80px; /* Establece una altura mínima */
+  padding: 10px 0; /* Añade espacio arriba y abajo */}	
+.factura-section { width: 50%; padding: 10px; display: flex; flex-direction: column; }
+.factura-label { font-size: 14px; text-align: left; margin-bottom: 10px; }
+.factura-num { font-size: 23px; margin-bottom: 20px; }
+.factura-num-dos {margin-right: 6px;}
+.factura-num-font {font-size: 28px; font-family: "Courier New", monospace; color: gray}
+.factura-info { text-align: left; margin-top: 35px;}
+.vertical-line { position: absolute; top: 70px; left: 76%; width: 1px; height: calc(100% - 70px); background-color: #000; }
+.items-table { width: 100%; border-collapse: collapse; }
+.items-table th, .items-table td {
+  width: 25%;
+  padding: 5px;
+  text-align: center;
+  font-size: 12px;
+}
+.watermark { position: relative; height: 400px; }
+.watermark-content { position: absolute; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0.1; }
+.watermark-logos { display: flex; justify-content: center; }
+.watermark-logo { margin: 0 20px; }
+.totals-section { 
+  display: flex;
+  margin-bottom: 10px;
+}
+.totals-section-border {
+  position: relative;
+  height: 10px; /* Altura del espacio que contiene el borde */
+  margin: 0 auto;
+  width: 94%;
+  border-top: 1px dashed #000;
+}
+.totals-section-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%; /* Ajusta este valor para controlar dónde comienza el borde */
+  width: 95%; /* Ajusta este valor para controlar el ancho del borde */
+  height: 1px;
+  background-color: transparent; /* Elimina el fondo sólido */
+}
+.subtotal-section { 
+  width: 40%; 
+  padding: 10px; 
+  font-size: 12px; 
+}
+
+.total-section { 
+  width: 60%; 
+  padding: 10px; 
+  text-align: right; 
+  font-size: 14px; 
+}
+.footer {padding: 0 10px; font-size: 10px; text-align: left; margin: 15px 0;}
+.footer p { margin: 0; }
+
+@media print {
+  /* Reglas más específicas para ocultar elementos no deseados */
+  .no-print, .no-print * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .vertical-blue-line {
+    position: absolute;
+    top: 49.5%;
+    left: 50%;
+    width: 1px;
+    height: 103px;
+    background-color: black;
+    /* Asegurarse que los colores se impriman */
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+  /* Ocultar encabezados y pies de página del navegador */
+  @page {
+    margin: 0.5cm;
+    size: auto;
+  }
+  
+  /* Oculta la barra de herramientas y direcciones de URL */
+  html {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Oculta los elementos fuera del contenedor principal */
+  body > *:not(.container) {
+    display: none !important;
+  }
+  
+  /* Oculta elementos específicos que podrían estar causando problemas */
+  .header-date, .print-timestamp, .browser-info {
+    display: none !important;
+  }
+}
+</style>
+<div class='container'>
+<div class='header'>
+  <div class='logo-section'>
+    <button onclick="window.print()" class="no-print">Imprimir</button>
+    <img src='C:\Users\mlopez\Desktop\mlopez\CLIENTE 2/LOGO1.jpg' class='logo'>
+    <div class="company-margin">
+      <p class='company-info company-name'>NEUMATICOS ARTURO S.R.L.</p>
+      <p class='company-info'>AV. SAN MARTIN 1695 - 1678 CASEROS</p>
+      <p class='company-info'>TEL.: (011) 4734 - 8476</p>
+      <p class='company-info email'>ventas@neumaticosarturo.com.ar</p>
+      <p class='company-info'>I.V.A.: Responsable Inscripto</p>
+    </div>
+  </div>
+  <div class='letter-box'>
+    <div class='flex letter'>
+      <div class="letter-border">
+          A
+      </div>
+      <div class="vertical-blue-line"></div>
+    </div>
+  </div>
+  <div class='factura-section'>
+    <div class='factura-label'>FACTURA</div>
+    <div class='factura-num'><span class="factura-num-dos">N°0001-</span> <span class="factura-num-font">00000003</div></span>
+    <div class='factura-info'>
+      <p class='company-info company-space'>FECHA: 17/03/2025</p>
+      <p class='company-info'>C.U.I.T.: 33-71457404-9</p>
+      <p class='company-info'>ING. BRUTOS: 33-71457404-9</p>
+      <p class='company-info'>INICIO DE ACTIVIDADES: 08/2014</p>
+    </div>
+  </div>
+</div>
+<div style="border-bottom: 1px solid #000; height: 60px;">
+  <div style="display: flex; justify-content: space-between; padding:0 10px;">
+    <p style="margin: 1rem 0 0 0">MARCOS ANTONIO LOPEZ</p>
+    <p style="margin: 1rem 0 0 0">C.U.I.T.: 27148859766</p>
+  </div>
+  <div style="display: flex; justify-content: space-between; padding:0 10px;">
+    <p>DARDO ROCHA Y 17A</p>
+    <p>IVA RESPONSABLE INSCRIPTO</p>
+  </div>
+</div>
+<table class='items-table'>
+  <tr>
+    <th style="border-bottom: none; width: 25%; text-align: center; color: gray;">CANTIDAD</th>
+    <th style="border-bottom: none; width: 25%; text-align: center; color: gray;">DESCRIPCION</th>
+    <th style="border-bottom: none; width: 25%; text-align: center; color: gray;">P.UNITARIO</th>
+    <th style="border-bottom: none; width: 25%; text-align: center; color: gray;">TOTAL</th>
+  </tr>
+<tr><td colspan='4'>
+<div class='watermark'>
+  <div class='watermark-content'>
+    <div class='watermark-logos'>
+      <img src='C:\Users\mlopez\Desktop\mlopez\CLIENTE 2\LOGO3.jpg' class='watermark-logo' style='width: 300px;'>
+      <img src='C:\Users\mlopez\Desktop\mlopez\CLIENTE 2\LOGO2.jpg' class='watermark-logo' style='width: 300px;'>
+    </div>
+  </div>
+  <table style='width: 100%; border: none;'>
+    <tr>
+      <td style='width: 25%; text-align: center;'>21</td>
+      <td style='width: 25%; text-align: center;'>NEUMATICO 2.0 STR</td>
+      <td style='width: 25%; text-align: center;'>$3,00</td>
+      <td style='width: 25%; text-align: center;'>$0,00</td>
+    </tr>
+    <tr>
+      <td style='width: 25%; text-align: center;'>21</td>
+      <td style='width: 25%; text-align: center;'>NEUMATICO 2.0 STR</td>
+      <td style='width: 25%; text-align: center;'>$2,00</td>
+      <td style='width: 25%; text-align: center;'>$0,00</td>
+    </tr>
+  </table>
+</div>
+</td></tr>
+</table>
+<div style="display: flex;">
+  <div class='subtotal-section'>
+    <div style="display: flex;">
+      <div style="margin-right: 80px;">SUBTOTAL</div>
+      <div>IVA</div>
+    </div>
+    <!-- Agregar los valores debajo -->
+    <div style="display: flex; margin-top: 5px;">
+      <div style="margin-right: 80px;">$10,000.00</div>
+      <div>$2,100.00</div>
+    </div>
+  </div>
+  <div class='total-section'>
+    <div>CONCEPTOS NO GRABADOS</div>
+    <br>
+    <div style='display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; text-align: left; padding-left: 50%;'><div>TOTAL $</div><div>12,100.00</div></div>
+  </div>
+</div>
+<div class='totals-section-border'></div>
+<div class='footer'>
+  <p>C.A.I. N 2175-19625194739</p>
+  <p>Fecha de Vencimiento: 17/04/2025</p>
+  <p style="margin-left: 20px;">REGISTRO PHG3523973</p>
+</div>
+</div>
+</body></html>
