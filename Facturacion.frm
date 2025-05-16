@@ -1,22 +1,22 @@
 VERSION 5.00
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
-Begin VB.Form Facturacion 
+Begin VB.Form FRMFacturacion 
    Caption         =   "Carga masiva"
-   ClientHeight    =   9885
+   ClientHeight    =   11565
    ClientLeft      =   120
-   ClientTop       =   765
-   ClientWidth     =   13575
+   ClientTop       =   465
+   ClientWidth     =   13845
    Icon            =   "Facturacion.frx":0000
    LinkTopic       =   "Form1"
-   ScaleHeight     =   9885
-   ScaleWidth      =   13575
+   ScaleHeight     =   11565
+   ScaleWidth      =   13845
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame8 
       Height          =   615
       Left            =   120
-      TabIndex        =   32
-      Top             =   9240
+      TabIndex        =   29
+      Top             =   10800
       Width           =   13335
       Begin VB.CommandButton btnFinalizar 
          Caption         =   "&Finalizar Venta"
@@ -31,7 +31,7 @@ Begin VB.Form Facturacion
          EndProperty
          Height          =   375
          Left            =   11160
-         TabIndex        =   36
+         TabIndex        =   33
          Top             =   160
          Width           =   2055
       End
@@ -49,38 +49,17 @@ Begin VB.Form Facturacion
          EndProperty
          Height          =   210
          Left            =   120
-         TabIndex        =   33
+         TabIndex        =   30
          Top             =   240
          Width           =   3285
       End
    End
    Begin VB.Frame Frame1 
-      Height          =   9135
+      Height          =   10575
       Left            =   120
       TabIndex        =   0
       Top             =   120
-      Width           =   13335
-      Begin MSComCtl2.DTPicker fecEmision 
-         Height          =   345
-         Left            =   11040
-         TabIndex        =   44
-         Top             =   600
-         Width           =   2100
-         _ExtentX        =   3704
-         _ExtentY        =   609
-         _Version        =   393216
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Format          =   188678145
-         CurrentDate     =   45777
-      End
+      Width           =   13575
       Begin VB.Frame Frame9 
          Caption         =   "Cliente"
          BeginProperty Font 
@@ -93,120 +72,56 @@ Begin VB.Form Facturacion
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H8000000D&
-         Height          =   1215
+         Height          =   855
          Left            =   120
-         TabIndex        =   37
-         Top             =   2520
-         Width           =   13095
-         Begin VB.TextBox txtDireccion 
+         TabIndex        =   36
+         Top             =   1080
+         Width           =   13335
+         Begin VB.ComboBox cboClientes 
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   330
-            Left            =   1080
-            TabIndex        =   43
-            Top             =   770
-            Width           =   11895
-         End
-         Begin VB.TextBox txtCuit 
-            BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   330
-            Left            =   9240
-            TabIndex        =   41
-            Top             =   300
-            Width           =   3735
-         End
-         Begin VB.TextBox txtNombre 
-            BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   330
-            Left            =   1080
-            TabIndex        =   39
-            Top             =   300
-            Width           =   7575
-         End
-         Begin VB.Label Label15 
-            AutoSize        =   -1  'True
-            Caption         =   "DIRECCIÓN"
-            BeginProperty Font 
-               Name            =   "Tahoma"
+               Name            =   "Verdana"
                Size            =   8.25
                Charset         =   0
-               Weight          =   400
+               Weight          =   700
                Underline       =   0   'False
-               Italic          =   0   'False
+               Italic          =   -1  'True
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   195
+            Height          =   315
             Left            =   120
-            TabIndex        =   42
-            Top             =   840
-            Width           =   855
-         End
-         Begin VB.Label Label14 
-            AutoSize        =   -1  'True
-            Caption         =   "CUIT"
-            BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Left            =   8760
-            TabIndex        =   40
+            TabIndex        =   37
+            Text            =   "Combo1"
             Top             =   360
-            Width           =   360
+            Width           =   13095
          End
-         Begin VB.Label Label5 
-            AutoSize        =   -1  'True
-            Caption         =   "NOMBRE"
-            BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Left            =   120
-            TabIndex        =   38
-            Top             =   360
-            Width           =   630
-         End
+      End
+      Begin MSComCtl2.DTPicker fecEmision 
+         Height          =   345
+         Left            =   11280
+         TabIndex        =   34
+         Top             =   600
+         Width           =   2100
+         _ExtentX        =   3704
+         _ExtentY        =   609
+         _Version        =   393216
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Format          =   141819905
+         CurrentDate     =   45777
       End
       Begin VB.Frame Frame7 
          Height          =   1335
          Left            =   120
-         TabIndex        =   21
-         Top             =   7680
-         Width           =   13095
+         TabIndex        =   19
+         Top             =   9000
+         Width           =   13335
          Begin VB.CommandButton ImpArturo 
             Caption         =   "&Comprobante neumaticos arturo"
             BeginProperty Font 
@@ -219,10 +134,10 @@ Begin VB.Form Facturacion
                Strikethrough   =   0   'False
             EndProperty
             Height          =   375
-            Left            =   9600
+            Left            =   9840
             MaskColor       =   &H00E0E0E0&
             Style           =   1  'Graphical
-            TabIndex        =   30
+            TabIndex        =   27
             Top             =   240
             Width           =   3375
          End
@@ -238,7 +153,7 @@ Begin VB.Form Facturacion
             EndProperty
             Height          =   375
             Left            =   6000
-            TabIndex        =   29
+            TabIndex        =   26
             Text            =   "$00.00"
             Top             =   600
             Width           =   3495
@@ -255,7 +170,7 @@ Begin VB.Form Facturacion
             EndProperty
             Height          =   375
             Left            =   3240
-            TabIndex        =   28
+            TabIndex        =   25
             Text            =   "$00.00"
             Top             =   600
             Width           =   2655
@@ -272,7 +187,7 @@ Begin VB.Form Facturacion
             EndProperty
             Height          =   405
             Left            =   120
-            TabIndex        =   27
+            TabIndex        =   24
             Text            =   "$00.00"
             Top             =   600
             Width           =   3015
@@ -289,8 +204,8 @@ Begin VB.Form Facturacion
                Strikethrough   =   0   'False
             EndProperty
             Height          =   375
-            Left            =   9600
-            TabIndex        =   31
+            Left            =   9840
+            TabIndex        =   28
             Top             =   840
             Width           =   3375
          End
@@ -337,7 +252,7 @@ Begin VB.Form Facturacion
             EndProperty
             Height          =   210
             Left            =   6000
-            TabIndex        =   26
+            TabIndex        =   23
             Top             =   240
             Width           =   585
          End
@@ -355,7 +270,7 @@ Begin VB.Form Facturacion
             EndProperty
             Height          =   210
             Left            =   3240
-            TabIndex        =   23
+            TabIndex        =   21
             Top             =   240
             Width           =   1320
          End
@@ -373,7 +288,7 @@ Begin VB.Form Facturacion
             EndProperty
             Height          =   210
             Left            =   120
-            TabIndex        =   22
+            TabIndex        =   20
             Top             =   240
             Width           =   945
          End
@@ -390,13 +305,48 @@ Begin VB.Form Facturacion
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H8000000D&
-         Height          =   1575
+         Height          =   1815
          Left            =   120
          TabIndex        =   6
-         Top             =   960
-         Width           =   13095
+         Top             =   2040
+         Width           =   13335
+         Begin VB.Frame Frame10 
+            Caption         =   "COMBUSTIBLE"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   735
+            Left            =   120
+            TabIndex        =   38
+            Top             =   360
+            Width           =   2295
+            Begin VB.ComboBox cboCombustible 
+               BeginProperty Font 
+                  Name            =   "Verdana"
+                  Size            =   8.25
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   315
+               Left            =   120
+               Style           =   2  'Dropdown List
+               TabIndex        =   39
+               Top             =   300
+               Width           =   2055
+            End
+         End
          Begin VB.CommandButton btnActualizarproducto 
             Caption         =   "&Actualizar producto"
+            Enabled         =   0   'False
             BeginProperty Font 
                Name            =   "Tahoma"
                Size            =   9
@@ -407,10 +357,9 @@ Begin VB.Form Facturacion
                Strikethrough   =   0   'False
             EndProperty
             Height          =   495
-            Left            =   10920
-            TabIndex        =   35
-            Top             =   1080
-            Visible         =   0   'False
+            Left            =   11160
+            TabIndex        =   32
+            Top             =   1200
             Width           =   2055
          End
          Begin VB.CommandButton btnIngresarproducto 
@@ -425,16 +374,26 @@ Begin VB.Form Facturacion
                Strikethrough   =   0   'False
             EndProperty
             Height          =   495
-            Left            =   10920
-            TabIndex        =   25
-            Top             =   840
+            Left            =   9000
+            TabIndex        =   22
+            Top             =   1200
             Width           =   2055
          End
          Begin VB.Frame Frame6 
+            Caption         =   "IVA"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   735
-            Left            =   9240
-            TabIndex        =   18
-            Top             =   720
+            Left            =   11640
+            TabIndex        =   16
+            Top             =   360
             Width           =   1575
             Begin VB.TextBox iva 
                Alignment       =   1  'Right Justify
@@ -448,29 +407,12 @@ Begin VB.Form Facturacion
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               Height          =   405
-               Left            =   600
-               TabIndex        =   20
-               Text            =   "21.00"
-               Top             =   240
-               Width           =   855
-            End
-            Begin VB.Label Label11 
-               Caption         =   "IVA"
-               BeginProperty Font 
-                  Name            =   "Tahoma"
-                  Size            =   8.25
-                  Charset         =   0
-                  Weight          =   700
-                  Underline       =   0   'False
-                  Italic          =   0   'False
-                  Strikethrough   =   0   'False
-               EndProperty
-               Height          =   255
+               Height          =   360
                Left            =   120
-               TabIndex        =   24
-               Top             =   360
-               Width           =   375
+               TabIndex        =   18
+               Text            =   "21.00"
+               Top             =   300
+               Width           =   1335
             End
             Begin VB.Label Label8 
                Caption         =   "IVA"
@@ -485,7 +427,7 @@ Begin VB.Form Facturacion
                EndProperty
                Height          =   255
                Left            =   -840
-               TabIndex        =   19
+               TabIndex        =   17
                Top             =   1080
                Width           =   1335
             End
@@ -502,9 +444,9 @@ Begin VB.Form Facturacion
                Strikethrough   =   0   'False
             EndProperty
             Height          =   735
-            Left            =   2520
-            TabIndex        =   13
-            Top             =   720
+            Left            =   4920
+            TabIndex        =   11
+            Top             =   360
             Width           =   6615
             Begin VB.TextBox precioNeto 
                Alignment       =   1  'Right Justify
@@ -519,12 +461,12 @@ Begin VB.Form Facturacion
                EndProperty
                ForeColor       =   &H00004000&
                Height          =   375
-               Left            =   4680
+               Left            =   4560
                Locked          =   -1  'True
-               TabIndex        =   17
+               TabIndex        =   15
                Text            =   "$00.00"
-               Top             =   240
-               Width           =   1815
+               Top             =   300
+               Width           =   1935
             End
             Begin VB.TextBox Preciouni 
                Alignment       =   1  'Right Justify
@@ -538,13 +480,14 @@ Begin VB.Form Facturacion
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   375
-               Left            =   1680
-               TabIndex        =   15
+               Left            =   1560
+               TabIndex        =   13
                Text            =   "$00.00"
-               Top             =   240
+               Top             =   300
                Width           =   1815
             End
             Begin VB.Label Label6 
+               AutoSize        =   -1  'True
                Caption         =   "PRECIO NETO"
                BeginProperty Font 
                   Name            =   "Tahoma"
@@ -555,13 +498,14 @@ Begin VB.Form Facturacion
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               Height          =   255
-               Left            =   3600
-               TabIndex        =   16
+               Height          =   195
+               Left            =   3480
+               TabIndex        =   14
                Top             =   360
-               Width           =   1335
+               Width           =   1020
             End
             Begin VB.Label Label7 
+               AutoSize        =   -1  'True
                Caption         =   "PRECIO UNITARIO"
                BeginProperty Font 
                   Name            =   "Tahoma"
@@ -572,11 +516,11 @@ Begin VB.Form Facturacion
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               Height          =   255
+               Height          =   195
                Left            =   120
-               TabIndex        =   14
+               TabIndex        =   12
                Top             =   360
-               Width           =   1455
+               Width           =   1365
             End
          End
          Begin VB.Frame Frame4 
@@ -591,9 +535,9 @@ Begin VB.Form Facturacion
                Strikethrough   =   0   'False
             EndProperty
             Height          =   735
-            Left            =   120
-            TabIndex        =   9
-            Top             =   720
+            Left            =   2520
+            TabIndex        =   7
+            Top             =   360
             Width           =   2295
             Begin VB.CommandButton restar 
                Caption         =   "-"
@@ -608,8 +552,8 @@ Begin VB.Form Facturacion
                EndProperty
                Height          =   315
                Left            =   600
-               TabIndex        =   12
-               Top             =   240
+               TabIndex        =   10
+               Top             =   300
                Width           =   375
             End
             Begin VB.CommandButton sumar 
@@ -625,8 +569,8 @@ Begin VB.Form Facturacion
                EndProperty
                Height          =   315
                Left            =   120
-               TabIndex        =   11
-               Top             =   240
+               TabIndex        =   9
+               Top             =   300
                Width           =   375
             End
             Begin VB.TextBox btnCantidad 
@@ -640,48 +584,21 @@ Begin VB.Form Facturacion
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               Height          =   330
+               Height          =   360
                Left            =   1080
                Locked          =   -1  'True
-               TabIndex        =   10
+               TabIndex        =   8
                Text            =   "1"
-               Top             =   240
+               Top             =   300
                Width           =   1095
             End
          End
-         Begin VB.TextBox txtDescripcion 
-            BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   405
-            Left            =   1320
-            TabIndex        =   8
-            Top             =   240
-            Width           =   11655
-         End
-         Begin VB.Label Label1 
-            AutoSize        =   -1  'True
-            Caption         =   "DESCRIPCIÓN:"
-            BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   195
-            Left            =   120
-            TabIndex        =   7
-            Top             =   360
-            Width           =   1095
+         Begin VB.Line Line4 
+            BorderWidth     =   2
+            X1              =   8880
+            X2              =   120
+            Y1              =   1440
+            Y2              =   1440
          End
       End
       Begin VB.Frame Frame2 
@@ -699,15 +616,15 @@ Begin VB.Form Facturacion
          Height          =   3975
          Left            =   120
          TabIndex        =   5
-         Top             =   3720
-         Width           =   13095
+         Top             =   5040
+         Width           =   13335
          Begin MSComctlLib.ListView Grilla 
             Height          =   3615
             Left            =   120
-            TabIndex        =   34
+            TabIndex        =   31
             Top             =   240
-            Width           =   12855
-            _ExtentX        =   22675
+            Width           =   13095
+            _ExtentX        =   23098
             _ExtentY        =   6376
             LabelWrap       =   -1  'True
             HideSelection   =   -1  'True
@@ -762,9 +679,9 @@ Begin VB.Form Facturacion
             Strikethrough   =   0   'False
          EndProperty
          Height          =   195
-         Left            =   9240
-         TabIndex        =   45
-         Top             =   670
+         Left            =   9600
+         TabIndex        =   35
+         Top             =   675
          Width           =   1545
       End
       Begin VB.Label Label4 
@@ -798,12 +715,12 @@ Begin VB.Form Facturacion
          Height          =   255
          Left            =   120
          TabIndex        =   3
-         Top             =   680
+         Top             =   720
          Width           =   1695
       End
       Begin VB.Line Line1 
          X1              =   4680
-         X2              =   13200
+         X2              =   13440
          Y1              =   405
          Y2              =   405
       End
@@ -827,6 +744,7 @@ Begin VB.Form Facturacion
    End
    Begin VB.Menu mnuListView 
       Caption         =   "&mnuListView"
+      Visible         =   0   'False
       Begin VB.Menu Eliminar 
          Caption         =   "Eliminar"
       End
@@ -835,7 +753,7 @@ Begin VB.Form Facturacion
       End
    End
 End
-Attribute VB_Name = "Facturacion"
+Attribute VB_Name = "FRMFacturacion"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -843,6 +761,10 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim Producto As New ClaseProducto
 Dim Clientes As New ClaseCliente
+
+Dim ClientesArray() As New ClaseCliente
+Dim ClientesIDs() As New ClaseCliente
+
 
 Dim alertaMostrada As Boolean
 Dim idProducto As Long
@@ -972,6 +894,8 @@ ErrHandler:
     Call DesconectarBD
 End Sub
 
+
+
 Private Sub Eliminar_Click()
     Dim idProducto As Long
     
@@ -1006,52 +930,54 @@ ErrHandler:
     Call DesconectarBD
 End Sub
 
-Private Sub fecha_Click()
 
-End Sub
 
 Private Sub Form_Load()
-    Dim Cantidad As Integer
-    
-      Dim hMenu As Long
-    
-    ' Obtener el menú del sistema
-    hMenu = GetSystemMenu(Me.hwnd, False)
-    
-    ' Eliminar solo el botón de maximizar
-    DeleteMenu hMenu, SC_MAXIMIZE, MF_BYCOMMAND
-    
-    CargarNumeroFactura
+Dim Cantidad As Integer
 
-    Producto.Cantidad = 0
-    Producto.PrecioUnitario = 0
-    Producto.precioNeto = 0
-    Producto.Descripcion = ""
-    
-    ' Conectar a la base de datos
-    Call ConectarBD
+  Dim hMenu As Long
 
-    ' Configuración del ListView
-    With Grilla
-        .View = lvwReport
-        .ColumnHeaders.Add , , "Id", 1000
-        .ColumnHeaders.Add , , "Descripción", 2000
-        .ColumnHeaders.Add , , "Cantidad", 1000
-        .ColumnHeaders.Add , , "Precio Unitario", 1500
-        .ColumnHeaders.Add , , "Precio Neto", 1500
-    End With
+' Obtener el menú del sistema
+hMenu = GetSystemMenu(Me.hwnd, False)
 
-    ' Cargar datos en el ListView
-    Call CargarGrilla
-    
+' Eliminar solo el botón de maximizar
+DeleteMenu hMenu, SC_MAXIMIZE, MF_BYCOMMAND
 
-    Cantidad = Grilla.ListItems.Count
-    If Cantidad > 0 Then
+'CargarNumeroFactura
+' Cargar los datos de clientes ANTES de cargar el combo
+ModuloClientes.CargarDatosClientes
+Call CargarClientesCombo
+Call CargarComboCombustible
 
-        Call CalculoGral
-    End If
+'Producto.Cantidad = 0
+'Producto.PrecioUnitario = 0
+'Producto.precioNeto = 0
+'Producto.Descripcion = ""
+'
+'' Conectar a la base de datos
+'Call ConectarBD
+'
+'' Configuración del ListView
+'With Grilla
+'    .View = lvwReport
+'    .ColumnHeaders.Add , , "Id", 1000
+'    .ColumnHeaders.Add , , "Descripción", 2000
+'    .ColumnHeaders.Add , , "Cantidad", 1000
+'    .ColumnHeaders.Add , , "Precio Unitario", 1500
+'    .ColumnHeaders.Add , , "Precio Neto", 1500
+'End With
+'
+'' Cargar datos en el ListView
+'Call CargarGrilla
+'
+'
+'Cantidad = Grilla.ListItems.Count
+'If Cantidad > 0 Then
+'
+'    Call CalculoGral
+'End If
 End Sub
-
+    
 Private Sub btnIngresarproducto_Click()
 Dim cmd As New ADODB.Command
 'Dim facturaNumero As Double
@@ -1178,21 +1104,13 @@ Private Sub ActualizarPrecio()
 End Sub
 
 
-Private Sub txtCuit_LostFocus()
-    Clientes.Cuit = txtCuit.Text
-End Sub
 
-Private Sub txtDescripcion_LostFocus()
-    Producto.Descripcion = txtDescripcion.Text
-End Sub
 
-Private Sub txtDireccion_LostFocus()
-    Clientes.Direccion = txtDireccion.Text
-End Sub
 
-Private Sub txtNombre_LostFocus()
-    Clientes.Cliente = txtNombre.Text
-End Sub
+
+
+
+
 
 Private Sub CargarGrilla()
     Dim rs As New ADODB.Recordset
@@ -1301,3 +1219,91 @@ ErrHandler:
     Call DesconectarBD
 End Sub
 
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Private Sub CargarClientesCombo()
+    Dim i As Integer
+    
+    ' Limpiar el ComboBox
+    cboClientes.Clear
+    
+    ' Verificar si hay elementos en el array antes de recorrerlo
+    If IsArrayInitialized(ModuloClientes.ClientesArray) Then
+        ' Cargar todos los clientes en el combo
+        For i = 0 To UBound(ModuloClientes.ClientesArray)
+            cboClientes.AddItem ModuloClientes.ClientesArray(i)
+            cboClientes.ItemData(cboClientes.NewIndex) = ModuloClientes.ClientesIDs(i)
+        Next i
+    End If
+End Sub
+
+' Función para verificar si un array está inicializado
+Private Function IsArrayInitialized(arr As Variant) As Boolean
+    On Error Resume Next
+    IsArrayInitialized = False
+    
+    ' Intentar obtener el límite superior del array
+    Dim temp As Integer
+    temp = UBound(arr)
+    
+    ' Si no hay error y el límite superior es al menos 0, el array está inicializado
+    If Err.Number = 0 And temp >= 0 Then
+        IsArrayInitialized = True
+    End If
+    
+    On Error GoTo 0
+End Function
+
+Private Sub cboClientes_KeyUp(KeyCode As Integer, Shift As Integer)
+    Dim filtro As String
+    Dim i As Integer
+    
+    ' Obtener el texto actual del ComboBox
+    filtro = LCase(cboClientes.Text)
+    
+    ' No hacer nada para teclas especiales
+    If KeyCode = vbKeyDown Or KeyCode = vbKeyUp Or KeyCode = vbKeyReturn Then
+        Exit Sub
+    End If
+    
+    ' Guardar la posición actual del cursor
+    Dim cursorPos As Integer
+    cursorPos = cboClientes.SelStart
+    
+    ' Limpiar y recargar los elementos que coincidan con el filtro
+    cboClientes.Clear
+    
+    ' Verificar si el array está inicializado
+    If IsArrayInitialized(ModuloClientes.ClientesArray) Then
+        For i = 0 To UBound(ModuloClientes.ClientesArray)
+            If InStr(1, LCase(ModuloClientes.ClientesArray(i)), filtro) > 0 Then
+                cboClientes.AddItem ModuloClientes.ClientesArray(i)
+                cboClientes.ItemData(cboClientes.NewIndex) = ModuloClientes.ClientesIDs(i)
+            End If
+        Next i
+    End If
+    
+    ' Restaurar el texto y la posición del cursor
+    cboClientes.Text = filtro
+    cboClientes.SelStart = cursorPos
+End Sub
+
+Private Sub cboClientes_LostFocus()
+    ' Si el ComboBox está vacío, recargar todos los elementos
+    If Trim(cboClientes.Text) = "" Then
+        CargarClientesCombo
+    End If
+End Sub
+
+Private Sub CargarComboCombustible()
+    ' Limpiar el ComboBox
+    cboCombustible.Clear
+    
+    ' Agregar las opciones
+    cboCombustible.AddItem "Diesel"
+    cboCombustible.AddItem "V-Power Diesel"
+    
+    ' Seleccionar la primera opción por defecto
+    If cboCombustible.ListCount > 0 Then
+        cboCombustible.ListIndex = 0
+    End If
+End Sub

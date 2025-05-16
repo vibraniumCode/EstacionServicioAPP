@@ -6,6 +6,11 @@ CREATE TABLE clientes
 	cuit NVARCHAR(20)
 )
 
-SELECT 
-    *
-FROM clientes;
+CREATE TABLE Combustible
+(
+	id INT PRIMARY KEY IDENTITY(1,1),
+	tipo VARCHAR(25),
+	precio MONEY
+)
+
+

@@ -20,6 +20,9 @@ Begin VB.Form FRMMenu
    End
    Begin VB.Menu Facturacion 
       Caption         =   "Facturación"
+      Begin VB.Menu Conbustible 
+         Caption         =   "&Conbustible"
+      End
       Begin VB.Menu pventa 
          Caption         =   "&Punto de venta"
       End
@@ -46,3 +49,10 @@ Private Sub CClientes_Click()
 FRMCliente.Show vbModal
 End Sub
 
+Private Sub Conbustible_Click()
+frmCombustible.Show vbModal
+End Sub
+
+Private Sub pventa_Click()
+FRMFacturacion.Show vbModal
+End Sub

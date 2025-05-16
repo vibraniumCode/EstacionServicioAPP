@@ -1,8 +1,10 @@
-Facturacion = 52, 52, 837, 502, , 26, 26, 811, 476, C
+FRMFacturacion = 52, 52, 837, 502, , 26, 26, 811, 476, C
 ModuloUtilidades = 208, 208, 941, 658, 
 ClaseProducto = 26, 26, 759, 476, 
 modConexion = 208, 208, 1357, 868, 
 modINI = 156, 156, 1086, 606, 
 ClaseCliente = 208, 208, 1476, 868, 
 FRMMenu = 0, 0, 1149, 660, , 208, 208, 1357, 868, C
-FRMCliente = 208, 208, 1357, 868, Z, 130, 130, 1279, 790, C
+FRMCliente = 208, 208, 1357, 868, , 130, 130, 1279, 790, C
+ModuloClientes = 234, 234, 1383, 894, 
+FRMCombustible = 26, 26, 1175, 686, Z, 130, 130, 1279, 790, C

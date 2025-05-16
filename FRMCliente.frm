@@ -5,7 +5,7 @@ Begin VB.Form FRMCliente
    Caption         =   "Administacion de Clientes - (LOCAL - DEFAULT)"
    ClientHeight    =   8310
    ClientLeft      =   45
-   ClientTop       =   390
+   ClientTop       =   690
    ClientWidth     =   18735
    Icon            =   "FRMCliente.frx":0000
    LinkTopic       =   "Form1"
@@ -51,6 +51,14 @@ Begin VB.Form FRMCliente
             TabIndex        =   13
             Top             =   240
             Width           =   2055
+         End
+         Begin VB.Line Line1 
+            BorderColor     =   &H8000000D&
+            BorderWidth     =   2
+            X1              =   2280
+            X2              =   15600
+            Y1              =   420
+            Y2              =   420
          End
          Begin VB.Label lbTotalClientes 
             AutoSize        =   -1  'True
@@ -253,6 +261,7 @@ Begin VB.Form FRMCliente
             Width           =   4095
          End
          Begin VB.Label Label3 
+            AutoSize        =   -1  'True
             Caption         =   "Dirección"
             BeginProperty Font 
                Name            =   "Verdana"
@@ -263,13 +272,14 @@ Begin VB.Form FRMCliente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   255
+            Height          =   195
             Left            =   7680
             TabIndex        =   7
             Top             =   360
-            Width           =   2415
+            Width           =   795
          End
          Begin VB.Label Label2 
+            AutoSize        =   -1  'True
             Caption         =   "C.U.I.T."
             BeginProperty Font 
                Name            =   "Verdana"
@@ -280,11 +290,11 @@ Begin VB.Form FRMCliente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   255
+            Height          =   195
             Left            =   4320
             TabIndex        =   6
             Top             =   360
-            Width           =   2175
+            Width           =   675
          End
          Begin VB.Label Label1 
             AutoSize        =   -1  'True
@@ -308,7 +318,6 @@ Begin VB.Form FRMCliente
    End
    Begin VB.Menu mnuListView 
       Caption         =   "Menu"
-      Visible         =   0   'False
       Begin VB.Menu mEliminar 
          Caption         =   "Eliminar"
       End
@@ -409,6 +418,8 @@ End Function
 Private Sub btnSalir_Click()
 Unload Me
 End Sub
+
+
 
 Private Sub Form_Load()
 

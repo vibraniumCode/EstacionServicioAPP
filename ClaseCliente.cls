@@ -40,3 +40,4 @@ End Property
 Public Property Let Direccion(ByVal Valor As String)
     mDireccion = Valor
 End Property
+
