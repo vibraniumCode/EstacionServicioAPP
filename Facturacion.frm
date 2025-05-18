@@ -11,7 +11,7 @@ Begin VB.Form FRMFacturacion
    LinkTopic       =   "Form1"
    ScaleHeight     =   11565
    ScaleWidth      =   13845
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame8 
       Height          =   615
       Left            =   120
@@ -113,7 +113,7 @@ Begin VB.Form FRMFacturacion
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   141819905
+         Format          =   70516737
          CurrentDate     =   45777
       End
       Begin VB.Frame Frame7 
@@ -1037,7 +1037,7 @@ Private Sub Form_Resize()
     End If
 End Sub
 
-Private Sub Grilla_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Grilla_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
  ' Mostrar el menú contextual solo si se hace clic derecho
     If Button = vbRightButton Then
         ' Mostrar el menú emergente

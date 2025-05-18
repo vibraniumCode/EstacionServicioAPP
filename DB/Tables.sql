@@ -13,4 +13,12 @@ CREATE TABLE Combustible
 	precio MONEY
 )
 
+CREATE TABLE Impuestos
+(
+	id INT PRIMARY KEY IDENTITY(1,1),
+	tipo VARCHAR(25),
+	monto MONEY,
+	fechaOperacion DATE
+)
+
 

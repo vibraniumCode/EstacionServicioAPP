@@ -1,14 +1,18 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form FRMCombustible 
+   BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Combustible"
    ClientHeight    =   2910
-   ClientLeft      =   60
-   ClientTop       =   705
+   ClientLeft      =   45
+   ClientTop       =   390
    ClientWidth     =   9135
    LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
    ScaleHeight     =   2910
    ScaleWidth      =   9135
+   ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame1 
       Caption         =   "Estacion de servicio"
@@ -57,6 +61,7 @@ Begin VB.Form FRMCombustible
       End
       Begin VB.CommandButton btnActualizar 
          Caption         =   "&Actualizar"
+         Enabled         =   0   'False
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   8.25
@@ -176,6 +181,7 @@ Begin VB.Form FRMCombustible
    End
    Begin VB.Menu mnuListView 
       Caption         =   "Menu"
+      Visible         =   0   'False
       Begin VB.Menu mEliminar 
          Caption         =   "Eliminar"
       End
@@ -190,7 +196,37 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim Combustibles As New ClaseCombustible
 Dim idCombustible As Integer
+
+Private Sub btnActualizar_Click()
+    Dim rs As New ADODB.Recordset
+    
+    If DatosValidador Then Exit Sub
+    
+    ' Conectar a la base de datos utilizando el módulo de conexión
+    Call ConectarBD
+
+    On Error GoTo ErrHandler
+    
+    rs.Open "exec sp_OperacionCombustible 'MODIFICAR'," & idCombustible & ",'" & txtTipo.Text & "','" & txtPrecioActual.Text & "'", conn, adOpenStatic, adLockReadOnly
+    MsgBox rs(0), vbInformation, "ESAPP"
+    
+    ' Cerrar el recordset
+    rs.Close
+    Call DesconectarBD
+    Call CargarlvCombustible
+    Call LimpiarCampos
+    
+    btnActualizar.Enabled = False
+    btnIngresar.Enabled = True
+    
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
+    Call DesconectarBD
+End Sub
 
 Private Sub btnIngresar_Click()
 Dim rs As New ADODB.Recordset
@@ -202,7 +238,10 @@ Dim rs As New ADODB.Recordset
 
     On Error GoTo ErrHandler
     
-    rs.Open "exec sp_OperacionCombustible 'INSERTAR',NULL,'" & txtTipo.Text & "'," & txtPrecioActual.Text, conn, adOpenStatic, adLockReadOnly
+    With Combustibles
+    rs.Open "exec sp_OperacionCombustible 'INSERTAR',NULL,'" & .Combustible & "'," & .Precio, conn, adOpenStatic, adLockReadOnly
+    End With
+    
     MsgBox rs(0), vbInformation, "ESAPP"
     
     ' Cerrar el recordset
@@ -232,6 +271,10 @@ End Function
 Private Sub LimpiarCampos()
     txtTipo.Text = ""
     txtPrecioActual.Text = ""
+End Sub
+
+Private Sub btnSalir_Click()
+Unload Me
 End Sub
 
 Private Sub Form_Load()
@@ -268,7 +311,7 @@ Private Sub CargarlvCombustible()
             With lvCombustible.ListItems.Add(, , rs("valor"))
                 .SubItems(1) = rs("id")
                 .SubItems(2) = rs("tipo")
-                .SubItems(3) = rs("precio")
+                .SubItems(3) = FormatoPrecio(rs("precio"))
             End With
             rs.MoveNext
         Loop
@@ -288,10 +331,39 @@ ErrHandler:
     Call DesconectarBD
 End Sub
 
-Private Sub lvCombustible_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub lvCombustible_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
 If Button = vbRightButton Then
     PopupMenu mnuListView
 End If
+End Sub
+
+Private Sub mActualizar_Click()
+If lvCombustible.ListItems.Count = 0 Then
+    MsgBox "No hay combustible para actualizar", vbInformation, "ESAPP"
+    Exit Sub
+End If
+
+On Error Resume Next
+
+If Err.Number <> 0 Then
+    MsgBox "Por favor, selecciione un tipo de combustible para actualizar", vbExclamation, "ESAPP"
+    Exit Sub
+End If
+On Error GoTo 0
+
+Call CargarDatosBox
+
+btnActualizar.Enabled = True
+btnIngresar.Enabled = False
+
+End Sub
+
+Private Sub CargarDatosBox()
+
+idCombustible = lvCombustible.SelectedItem.SubItems(1)
+txtTipo.Text = lvCombustible.SelectedItem.SubItems(2)
+txtPrecioActual.Text = lvCombustible.SelectedItem.SubItems(3)
+
 End Sub
 
 Private Sub mEliminar_Click()
@@ -324,4 +396,15 @@ On Error GoTo ErrHandler
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
     Call DesconectarBD
+End Sub
+
+Private Sub txtPrecioActual_LostFocus()
+With Combustibles
+    .Precio = txtPrecioActual.Text
+    txtPrecioActual.Text = FormatoPrecio(.Precio)
+End With
+End Sub
+
+Private Sub txtTipo_LostFocus()
+Combustibles.Combustible = txtTipo.Text
 End Sub

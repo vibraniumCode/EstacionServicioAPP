@@ -13,6 +13,7 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 
+Private mIdClientes As Integer
 Private mCliente As String
 Private mCUIT As String
 Private mDireccion As String
@@ -29,6 +30,10 @@ Public Property Get Direccion() As String
     Direccion = mDireccion
 End Property
 
+Public Property Get IdCliente() As Integer
+    IdCliente = mIdClientes
+End Property
+
 Public Property Let Cliente(ByVal Valor As String)
     mCliente = Valor
 End Property
@@ -39,5 +44,9 @@ End Property
 
 Public Property Let Direccion(ByVal Valor As String)
     mDireccion = Valor
+End Property
+
+Public Property Let IdCliente(ByVal Valor As Integer)
+    mIdClientes = Valor
 End Property
 

@@ -5,7 +5,7 @@ Begin VB.Form FRMCliente
    Caption         =   "Administacion de Clientes - (LOCAL - DEFAULT)"
    ClientHeight    =   8310
    ClientLeft      =   45
-   ClientTop       =   690
+   ClientTop       =   390
    ClientWidth     =   18735
    Icon            =   "FRMCliente.frx":0000
    LinkTopic       =   "Form1"
@@ -141,6 +141,23 @@ Begin VB.Form FRMCliente
          TabIndex        =   8
          Top             =   1440
          Width           =   17775
+         Begin VB.CommandButton btnNuevoCliente 
+            Caption         =   "&Nuevo Cliente"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   375
+            Left            =   120
+            TabIndex        =   9
+            Top             =   240
+            Width           =   2055
+         End
          Begin VB.CommandButton bntActualizar 
             Caption         =   "&Actualizar Cliente"
             Enabled         =   0   'False
@@ -156,23 +173,6 @@ Begin VB.Form FRMCliente
             Height          =   375
             Left            =   2400
             TabIndex        =   15
-            Top             =   240
-            Width           =   2055
-         End
-         Begin VB.CommandButton btnNuevoCliente 
-            Caption         =   "&Nuevo Cliente"
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   8.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   375
-            Left            =   120
-            TabIndex        =   9
             Top             =   240
             Width           =   2055
          End
@@ -318,6 +318,7 @@ Begin VB.Form FRMCliente
    End
    Begin VB.Menu mnuListView 
       Caption         =   "Menu"
+      Visible         =   0   'False
       Begin VB.Menu mEliminar 
          Caption         =   "Eliminar"
       End
@@ -332,8 +333,10 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim Clientes As New ClaseCliente
+
 Dim Cantidad As Integer
-Dim idCliente As String
+Dim IdCliente As String
 
 Private Sub bntActualizar_Click()
     Dim rs As New ADODB.Recordset
@@ -347,7 +350,7 @@ Private Sub bntActualizar_Click()
     
     If ValidarCUITCompleto Then Exit Sub
     
-    rs.Open "exec sp_OperacionCliente 'MODIFICAR'," & idCliente & ",'" & txtNombre.Text & "','" & txtDir.Text & "','" & txtCuit.Text & "'", conn, adOpenStatic, adLockReadOnly
+    rs.Open "exec sp_OperacionCliente 'MODIFICAR'," & IdCliente & ",'" & txtNombre.Text & "','" & txtDir.Text & "','" & txtCuit.Text & "'", conn, adOpenStatic, adLockReadOnly
     MsgBox rs(0), vbInformation, "ESAPP"
     
     ' Cerrar el recordset
@@ -378,8 +381,12 @@ Private Sub btnNuevoCliente_Click()
     
     If ValidarCUITCompleto Then Exit Sub
     
-    rs.Open "exec sp_OperacionCliente 'INSERTAR',NULL,'" & txtNombre.Text & "','" & txtDir.Text & "','" & txtCuit.Text & "'", conn, adOpenStatic, adLockReadOnly
+    With Clientes
+    
+    rs.Open "exec sp_OperacionCliente 'INSERTAR',NULL,'" & .Cliente & "','" & .Direccion & "','" & .Cuit & "'", conn, adOpenStatic, adLockReadOnly
     MsgBox rs(0), vbInformation, "ESAPP"
+    
+    End With
     
     ' Cerrar el recordset
     rs.Close
@@ -484,7 +491,7 @@ ErrHandler:
     Call DesconectarBD
 End Sub
 
-Private Sub lvClientes_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub lvClientes_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
 If Button = vbRightButton Then
     PopupMenu mnuListView
 End If
@@ -514,13 +521,14 @@ End Sub
 
 Private Sub CargarDatosBox()
 
-idCliente = lvClientes.SelectedItem.SubItems(1)
-lbSeleccion.Caption = "Cliente seleccionado: " + idCliente
+IdCliente = lvClientes.SelectedItem.SubItems(1)
 txtNombre.Text = lvClientes.SelectedItem.SubItems(2)
 txtDir.Text = lvClientes.SelectedItem.SubItems(3)
 txtCuit.Text = lvClientes.SelectedItem.SubItems(4)
+    
+lbSeleccion.Caption = "Cliente seleccionado: " + Format$(CLng(IdCliente), "0000000000")
 
-
+'Format$(Valor, "#,##0.00")
 End Sub
 
 Private Sub mEliminar_Click()
@@ -538,12 +546,12 @@ Else
     Exit Sub
 End If
 
-idCliente = lvClientes.SelectedItem.SubItems(1)
+IdCliente = lvClientes.SelectedItem.SubItems(1)
 
 Call ConectarBD
 
 On Error GoTo ErrHandler
-    rs.Open "EXEC sp_OperacionCliente 'ELIMINAR', " & idCliente, conn, adOpenStatic, adLockReadOnly
+    rs.Open "EXEC sp_OperacionCliente 'ELIMINAR', " & IdCliente, conn, adOpenStatic, adLockReadOnly
     MsgBox rs(0), vbInformation, "ESAPP"
     
     rs.Close
@@ -727,3 +735,15 @@ Public Function ValidarCUIT(ByVal strCUIT As String) As Boolean
     ' Verificar si el dígito calculado coincide con el ingresado
     ValidarCUIT = (digitoVerificador = Val(parte3))
 End Function
+
+Private Sub txtCuit_LostFocus()
+Clientes.Cuit = txtCuit.Text
+End Sub
+
+Private Sub txtDir_LostFocus()
+Clientes.Direccion = txtDir.Text
+End Sub
+
+Private Sub txtNombre_LostFocus()
+Clientes.Cliente = txtNombre.Text
+End Sub

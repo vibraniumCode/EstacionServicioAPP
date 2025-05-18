@@ -20,6 +20,15 @@ Begin VB.Form FRMMenu
    End
    Begin VB.Menu Facturacion 
       Caption         =   "Facturación"
+      Begin VB.Menu Impuestos 
+         Caption         =   "&Impuestos"
+         Begin VB.Menu ITC 
+            Caption         =   "&Impuestos ITC"
+         End
+         Begin VB.Menu Timp 
+            Caption         =   "&Tabla de impuesto"
+         End
+      End
       Begin VB.Menu Conbustible 
          Caption         =   "&Conbustible"
       End
@@ -51,6 +60,10 @@ End Sub
 
 Private Sub Conbustible_Click()
 frmCombustible.Show vbModal
+End Sub
+
+Private Sub ITC_Click()
+FRMImpuestos.Show vbModal
 End Sub
 
 Private Sub pventa_Click()
