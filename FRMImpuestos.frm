@@ -20,7 +20,7 @@ Begin VB.Form FRMImpuestos
       TabIndex        =   9
       Top             =   1800
       Width           =   7695
-      Begin VB.TextBox Text4 
+      Begin VB.TextBox txtUltimoImp 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
             Name            =   "Verdana"
@@ -35,7 +35,6 @@ Begin VB.Form FRMImpuestos
          Height          =   405
          Left            =   5640
          TabIndex        =   11
-         Text            =   "1500.00"
          Top             =   240
          Width           =   1935
       End
@@ -214,6 +213,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+Dim Impuestos As New ClaseImpuesto
+
 Private Sub btnGrabar_Click()
 Dim rs As New ADODB.Recordset
     
@@ -223,17 +224,15 @@ Dim rs As New ADODB.Recordset
     Call ConectarBD
 
     On Error GoTo ErrHandler
-    
-    With Combustibles
-    rs.Open "exec sp_OperacionCombustible 'INSERTAR',NULL,'" & .Combustible & "'," & .Precio, conn, adOpenStatic, adLockReadOnly
-    End With
+
+    rs.Open "exec sp_impuestos 'ITC'," & Impuestos.Monto & ",'" & Format(txtFecOperacion.Text, "yyyymmdd") & "'", conn, adOpenStatic, adLockReadOnly
     
     MsgBox rs(0), vbInformation, "ESAPP"
     
     ' Cerrar el recordset
     rs.Close
     Call DesconectarBD
-    Call CargarlvCombustible
+    Call CargarUltImpu
     Call LimpiarCampos
     Exit Sub
 
@@ -244,6 +243,7 @@ End Sub
 
 Private Sub Form_Load()
 txtFecOperacion.Text = Date
+Call CargarUltImpu
 End Sub
 
 Public Function DatosValidador() As Boolean
@@ -254,3 +254,37 @@ Else
     DatosValidador = False
 End If
 End Function
+
+Private Sub txtMonto_LostFocus()
+With Impuestos
+    .Monto = txtMonto.Text
+    txtMonto.Text = FormatoPrecio(.Monto)
+End With
+End Sub
+
+Private Sub LimpiarCampos()
+    txtMonto.Text = FormatoPrecio("$00.00")
+End Sub
+
+Private Sub CargarUltImpu()
+Dim rs As New ADODB.Recordset
+    
+    ' Conectar a la base de datos utilizando el módulo de conexión
+    Call ConectarBD
+
+    On Error GoTo ErrHandler
+
+    rs.Open "SELECT Monto FROM Impuestos WHERE id = (SELECT MAX(id) FROM Impuestos)", conn, adOpenStatic, adLockReadOnly
+    
+    txtUltimoImp.Text = FormatoPrecio(rs(0))
+    
+    
+    ' Cerrar el recordset
+    rs.Close
+    Call DesconectarBD
+    Exit Sub
+
+ErrHandler:
+    MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
+    Call DesconectarBD
+End Sub

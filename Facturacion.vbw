@@ -1,4 +1,3 @@
-FRMFacturacion = 52, 52, 837, 502, , 26, 26, 811, 476, C
 ModuloUtilidades = 208, 208, 941, 658, 
 ClaseProducto = 26, 26, 759, 476, 
 modConexion = 208, 208, 1357, 868, 
@@ -10,3 +9,4 @@ ModuloClientes = 234, 234, 1383, 894,
 FRMCombustible = 26, 26, 1175, 686, , 130, 130, 1279, 790, C
 ClaseCombustible = 182, 182, 1331, 842, 
 FRMImpuestos = 312, 312, 1461, 972, Z, 52, 52, 1201, 712, C
+ClaseImpuesto = 52, 52, 1201, 712, 
