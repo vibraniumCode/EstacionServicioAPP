@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FRMCombustible 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Combustible"
@@ -396,6 +396,12 @@ On Error GoTo ErrHandler
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
     Call DesconectarBD
+End Sub
+
+Private Sub txtPrecioActual_KeyPress(KeyAscii As Integer)
+If (KeyAscii < 48 Or KeyAscii > 57) And KeyAscii <> 8 Then
+        KeyAscii = 0 ' Cancelar el caracter si no es un numero
+    End If
 End Sub
 
 Private Sub txtPrecioActual_LostFocus()

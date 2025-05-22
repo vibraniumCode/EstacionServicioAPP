@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FRMCliente 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Administacion de Clientes - (LOCAL - DEFAULT)"
@@ -32,7 +32,7 @@ Begin VB.Form FRMCliente
       Begin VB.Frame Frame5 
          Height          =   735
          Left            =   360
-         TabIndex        =   12
+         TabIndex        =   11
          Top             =   7080
          Width           =   17775
          Begin VB.CommandButton btnSalir 
@@ -48,7 +48,7 @@ Begin VB.Form FRMCliente
             EndProperty
             Height          =   375
             Left            =   15600
-            TabIndex        =   13
+            TabIndex        =   12
             Top             =   240
             Width           =   2055
          End
@@ -74,7 +74,7 @@ Begin VB.Form FRMCliente
             ForeColor       =   &H8000000D&
             Height          =   195
             Left            =   120
-            TabIndex        =   14
+            TabIndex        =   13
             Top             =   285
             Width           =   60
          End
@@ -97,13 +97,13 @@ Begin VB.Form FRMCliente
          Top             =   2280
          Width           =   17775
          Begin MSComctlLib.ListView lvClientes 
-            Height          =   4215
+            Height          =   4335
             Left            =   120
-            TabIndex        =   11
-            Top             =   360
+            TabIndex        =   16
+            Top             =   240
             Width           =   17535
             _ExtentX        =   30930
-            _ExtentY        =   7435
+            _ExtentY        =   7646
             LabelWrap       =   -1  'True
             HideSelection   =   -1  'True
             FullRowSelect   =   -1  'True
@@ -172,7 +172,7 @@ Begin VB.Form FRMCliente
             EndProperty
             Height          =   375
             Left            =   2400
-            TabIndex        =   15
+            TabIndex        =   14
             Top             =   240
             Width           =   2055
          End
@@ -190,7 +190,7 @@ Begin VB.Form FRMCliente
             ForeColor       =   &H000000C0&
             Height          =   240
             Left            =   4680
-            TabIndex        =   16
+            TabIndex        =   15
             Top             =   300
             Width           =   75
          End

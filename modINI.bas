@@ -27,3 +27,4 @@ Public Sub EscribirIni(ByVal Seccion As String, ByVal Clave As String, ByVal Val
     WritePrivateProfileString Seccion, Clave, Valor, Archivo
 End Sub
 
+

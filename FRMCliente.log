@@ -1,0 +1,9 @@
+Línea 99: la clase MSComctlLib.ListView del control lvClientes no era una clase de control cargada.
+Línea 105: el nombre de la propiedad _ExtentX de lvClientes no es válido.
+Línea 106: el nombre de la propiedad _ExtentY de lvClientes no es válido.
+Línea 107: el nombre de la propiedad LabelWrap de lvClientes no es válido.
+Línea 108: el nombre de la propiedad HideSelection de lvClientes no es válido.
+Línea 109: el nombre de la propiedad FullRowSelect de lvClientes no es válido.
+Línea 110: el nombre de la propiedad GridLines de lvClientes no es válido.
+Línea 111: el nombre de la propiedad _Version de lvClientes no es válido.
+Línea 125: el nombre de la propiedad NumItems de lvClientes no es válido.

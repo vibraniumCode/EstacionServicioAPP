@@ -69,3 +69,7 @@ End Sub
 Private Sub pventa_Click()
 FRMFacturacion.Show vbModal
 End Sub
+
+Private Sub Timp_Click()
+FRMListadoITC.Show vbModal
+End Sub

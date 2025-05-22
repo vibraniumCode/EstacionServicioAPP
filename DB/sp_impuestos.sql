@@ -4,8 +4,10 @@ EXEC sp_impuestos 'ITC', 1700, '20250716'
 SELECT Monto FROM Impuestos WHERE id = (SELECT MAX(id) FROM Impuestos);
 */
 
-
-CREATE OR ALTER PROCEDURE sp_impuestos
+IF OBJECT_ID('sp_impuestos') IS NOT NULL
+    DROP PROCEDURE sp_impuestos
+GO
+CREATE PROCEDURE sp_impuestos
 (
 	@impuesto VARCHAR(25),
 	@monto MONEY,

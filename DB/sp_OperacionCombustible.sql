@@ -1,6 +1,7 @@
-
-
-CREATE OR ALTER PROCEDURE sp_OperacionCombustible
+IF OBJECT_ID('sp_OperacionCombustible') IS NOT NULL
+    DROP PROCEDURE sp_OperacionCombustible
+GO
+CREATE PROCEDURE sp_OperacionCombustible
 (
 	@Accion NVARCHAR(10),          -- 'INSERTAR', 'MODIFICAR', 'ELIMINAR'
     @IdCombustible INT = NULL,         -- Necesario para MODIFICAR y ELIMINAR

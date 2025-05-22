@@ -19,8 +19,10 @@ EXEC sp_OperacionCliente
     @IdCliente = 1;
 
 */
-
-CREATE OR ALTER PROCEDURE sp_OperacionCliente
+IF OBJECT_ID('sp_OperacionCliente') IS NOT NULL
+    DROP PROCEDURE sp_OperacionCliente
+GO
+CREATE PROCEDURE sp_OperacionCliente
 (
 	@Accion NVARCHAR(10),          -- 'INSERTAR', 'MODIFICAR', 'ELIMINAR'
     @IdCliente INT = NULL,         -- Necesario para MODIFICAR y ELIMINAR

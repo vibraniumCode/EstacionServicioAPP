@@ -241,19 +241,29 @@ ErrHandler:
     Call DesconectarBD
 End Sub
 
+Private Sub btnSalir_Click()
+Unload Me
+End Sub
+
 Private Sub Form_Load()
 txtFecOperacion.Text = Date
 Call CargarUltImpu
 End Sub
 
 Public Function DatosValidador() As Boolean
-If txtMonto.Text = "" Then
+If txtMonto.Text = "$0.00" Then
     MsgBox "Ingrese el monto del impuesto", vbInformation, "ESAPP"
     DatosValidador = True
 Else
     DatosValidador = False
 End If
 End Function
+
+Private Sub txtMonto_KeyPress(KeyAscii As Integer)
+If (KeyAscii < 48 Or KeyAscii > 57) And KeyAscii <> 8 Then
+        KeyAscii = 0 ' Cancelar el caracter si no es un numero
+    End If
+End Sub
 
 Private Sub txtMonto_LostFocus()
 With Impuestos
@@ -276,7 +286,12 @@ Dim rs As New ADODB.Recordset
 
     rs.Open "SELECT Monto FROM Impuestos WHERE id = (SELECT MAX(id) FROM Impuestos)", conn, adOpenStatic, adLockReadOnly
     
-    txtUltimoImp.Text = FormatoPrecio(rs(0))
+    If Not rs.EOF And Not rs.BOF Then
+        txtUltimoImp.Text = FormatoPrecio(rs(0))
+    Else
+        txtUltimoImp.Text = "0.00" ' O el valor por defecto que consideres
+    End If
+
     
     
     ' Cerrar el recordset
