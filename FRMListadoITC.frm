@@ -1,25 +1,26 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
-Begin VB.Form FRMListadoITC 
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Begin VB.Form FRMListadoImpuestos 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Listado de ITC Mensual"
-   ClientHeight    =   7950
+   Caption         =   "Listado de impuestos"
+   ClientHeight    =   8535
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   5535
+   ClientWidth     =   6390
+   Icon            =   "FRMListadoITC.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7950
-   ScaleWidth      =   5535
+   ScaleHeight     =   8535
+   ScaleWidth      =   6390
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame2 
-      Height          =   735
+      Height          =   975
       Left            =   120
-      TabIndex        =   7
-      Top             =   7080
-      Width           =   5295
+      TabIndex        =   6
+      Top             =   7440
+      Width           =   6135
       Begin VB.CommandButton btnSalir 
          Caption         =   "&Salir"
          BeginProperty Font 
@@ -31,15 +32,17 @@ Begin VB.Form FRMListadoITC
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
-         Left            =   3960
-         TabIndex        =   8
+         Height          =   615
+         Left            =   4800
+         Picture         =   "FRMListadoITC.frx":058A
+         Style           =   1  'Graphical
+         TabIndex        =   7
          Top             =   240
          Width           =   1215
       End
    End
    Begin VB.Frame Frame1 
-      Caption         =   "Impuesto ITC"
+      Caption         =   "Impuesto "
       BeginProperty Font 
          Name            =   "Verdana"
          Size            =   8.25
@@ -50,27 +53,37 @@ Begin VB.Form FRMListadoITC
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H8000000D&
-      Height          =   6855
+      Height          =   7335
       Left            =   120
       TabIndex        =   0
       Top             =   120
-      Width           =   5295
-      Begin MSComctlLib.ListView lvlITC 
-         Height          =   4935
+      Width           =   6135
+      Begin VB.ComboBox cboEstaciones 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Left            =   600
-         TabIndex        =   6
-         Top             =   1800
-         Width           =   3975
-         _ExtentX        =   7011
-         _ExtentY        =   8705
-         LabelWrap       =   -1  'True
-         HideSelection   =   -1  'True
-         GridLines       =   -1  'True
-         _Version        =   393217
-         ForeColor       =   -2147483640
-         BackColor       =   -2147483643
-         BorderStyle     =   1
-         Appearance      =   1
+         Style           =   2  'Dropdown List
+         TabIndex        =   10
+         Top             =   1200
+         Width           =   4935
+      End
+      Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
+         Height          =   4335
+         Left            =   120
+         TabIndex        =   9
+         Top             =   2880
+         Width           =   5895
+         _ExtentX        =   10398
+         _ExtentY        =   7646
+         _Version        =   393216
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
             Size            =   8.25
@@ -80,7 +93,23 @@ Begin VB.Form FRMListadoITC
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         NumItems        =   0
+      End
+      Begin VB.ComboBox cboImpuestos 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
+         Left            =   600
+         Style           =   2  'Dropdown List
+         TabIndex        =   8
+         Top             =   1680
+         Width           =   4935
       End
       Begin VB.CommandButton btnCargar 
          Caption         =   "&Cargar"
@@ -93,28 +122,30 @@ Begin VB.Form FRMListadoITC
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
+         Height          =   615
          Left            =   600
+         Picture         =   "FRMListadoITC.frx":0B14
+         Style           =   1  'Graphical
          TabIndex        =   5
-         Top             =   1320
-         Width           =   3975
+         Top             =   2160
+         Width           =   1215
       End
       Begin VB.ComboBox cboMeses 
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
          Height          =   330
          Left            =   2640
+         Style           =   2  'Dropdown List
          TabIndex        =   2
-         Text            =   "-- TODO --"
-         Top             =   840
-         Width           =   1935
+         Top             =   720
+         Width           =   2895
       End
       Begin VB.TextBox txtAño 
          Alignment       =   1  'Right Justify
@@ -131,8 +162,15 @@ Begin VB.Form FRMListadoITC
          Left            =   600
          TabIndex        =   1
          Text            =   "2025"
-         Top             =   840
+         Top             =   720
          Width           =   1935
+      End
+      Begin VB.Line Line1 
+         BorderWidth     =   2
+         X1              =   1800
+         X2              =   5520
+         Y1              =   2470
+         Y2              =   2470
       End
       Begin VB.Label Label2 
          Caption         =   "Mes Proceso"
@@ -145,11 +183,11 @@ Begin VB.Form FRMListadoITC
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H8000000D&
+         ForeColor       =   &H80000011&
          Height          =   255
          Left            =   2640
          TabIndex        =   4
-         Top             =   600
+         Top             =   480
          Width           =   1935
       End
       Begin VB.Label Label1 
@@ -164,16 +202,16 @@ Begin VB.Form FRMListadoITC
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H8000000D&
+         ForeColor       =   &H80000011&
          Height          =   195
          Left            =   600
          TabIndex        =   3
-         Top             =   600
+         Top             =   480
          Width           =   1215
       End
    End
 End
-Attribute VB_Name = "FRMListadoITC"
+Attribute VB_Name = "FRMListadoImpuestos"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -210,57 +248,62 @@ Public Sub CargarMeses()
     ' Seleccionar "TODO" por defecto
     cboMeses.ListIndex = 0
     
-    ' Cerrar el recordset
-    rs.Close
-    
-    ' Desconectar
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
     Exit Sub
     
 ErrHandler:
     MsgBox "Error al cargar los meses: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Public Sub CargarGrilla()
     Dim rs As New ADODB.Recordset
-    
+    Dim sql As String
+    Dim fila As Integer
+    Dim idImpuestoSeleccionado As Integer
+    Dim idEmpresaSeleccionado As Integer
     Call ConectarBD
     
     On Error GoTo ErrHandler
     
-    ' Limpiar el ListView antes de agregar los nuevos datos
-    lvlITC.ListItems.Clear
+    sql = "exec sp_impuestos " & cboImpuestos.ItemData(cboImpuestos.ListIndex) & ", NULL, NULL, NULL, "
+    sql = sql + "" & cboEstaciones.ItemData(cboEstaciones.ListIndex) & ", " & txtAño.Text
+    sql = sql + ", " & cboMeses.ItemData(cboMeses.ListIndex) & ", GRL"
     
-    If cboMeses.ItemData(cboMeses.ListIndex) = 999 Then
-        rs.Open "SELECT '' AS valor,fechaOperacion,tipo,monto FROM Impuestos WHERE Year(fechaOperacion) = " & txtAño & " ORDER BY fechaOperacion ASC", conn, adOpenStatic, adLockReadOnly
-    Else
-        rs.Open "SELECT '' AS valor,fechaOperacion,tipo,monto FROM Impuestos WHERE Year(fechaOperacion) = " & txtAño & " AND Month(fechaOperacion) = " & cboMeses.ItemData(cboMeses.ListIndex) & " ORDER BY fechaOperacion ASC", conn, adOpenStatic, adLockReadOnly
-    End If
-     ' Cargar datos en el ListView
-    If Not rs.EOF Then
+    rs.Open sql, conn, adOpenStatic, adLockReadOnly
+   
+    ' Configurar columnas del MSFlexGrid
+    With MSFlexGrid1
+        .Clear
+        .Rows = 1 ' Solo cabecera
+        .Cols = 3
+        .TextMatrix(0, 0) = "Fecha"
+        .TextMatrix(0, 1) = "Impuesto"
+        .TextMatrix(0, 2) = "Monto"
+
+        ' Agregar datos fila por fila
         Do While Not rs.EOF
-            With lvlITC.ListItems.Add(, , rs("valor"))
-                .SubItems(1) = rs("fechaOperacion")
-                .SubItems(2) = rs("tipo")
-                .SubItems(3) = FormatoPrecio(rs("monto"))
-            End With
+            .Rows = .Rows + 1
+            fila = .Rows - 1
+            .TextMatrix(fila, 0) = rs("fechaOperacion")
+            .TextMatrix(fila, 1) = UCase(rs("tipo"))
+            .TextMatrix(fila, 2) = UCase(rs("monto"))
             rs.MoveNext
         Loop
-    Else
-        MsgBox "No hay impuestos registrados.", vbExclamation, "Aviso"
-    End If
+    End With
     
-    ' Cerrar el recordset
-    rs.Close
-    
-    ' Desconectar
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+    ' Pintar filas alternadas
+    Call PintarFilasAlternadasFlex(MSFlexGrid1)
     Exit Sub
     
 ErrHandler:
     MsgBox "Error al cargar los impuesto: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Private Sub btnCargar_Click()
@@ -277,19 +320,98 @@ Private Sub btnSalir_Click()
 Unload Me
 End Sub
 
-Private Sub Form_Load()
-Call CargarMeses
+Public Sub CargarImpuesto() 'new
+    Dim rs As New ADODB.Recordset
 
-' Configuración del ListView
-With lvlITC
-    .View = lvwReport
-    .ColumnHeaders.Add , , "", 0
-    .ColumnHeaders.Add , , "Fecha", 1500
-    .ColumnHeaders.Add , , "Tipo", 1100
-    .ColumnHeaders.Add , , "Monto", 1300
-End With
+    ' Conectar a la base de datos
+    Call ConectarBD
+    
+    On Error GoTo ErrHandler
+    
+    cboImpuestos.Clear
+    
+    ' Agregar la opción "TODO" con id = 999
+    cboImpuestos.AddItem "-- TODO --"
+    cboImpuestos.ItemData(cboImpuestos.NewIndex) = 999
+    
+    rs.Open "select distinct t.id, t.tipo from Empresa_Impuesto ei join Timpuestos t on t.id = ei.idTipo where ei.idEmpresa = " & cboEstaciones.ItemData(cboEstaciones.ListIndex) & " ORDER BY id", conn, adOpenStatic, adLockReadOnly
+    
+    ' Cargar los meses desde la base de datos al ComboBox
+    Do While Not rs.EOF
+        ' Puedes guardar el ID en ItemData si querés usarlo después
+        cboImpuestos.AddItem rs("id") & " - " & rs("tipo")
+        cboImpuestos.ItemData(cboImpuestos.NewIndex) = rs("id")
+        rs.MoveNext
+    Loop
+    
+    ' Seleccionar "TODO" por defecto
+    cboImpuestos.ListIndex = 0
+    
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+    Exit Sub
+    
+ErrHandler:
+    MsgBox "Error al cargar el listado de impuestos: " & Err.Description, vbCritical, "Error"
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
+Private Sub cboEstaciones_Click()
+Call CargarImpuesto
+End Sub
+
+Private Sub Form_Load()
+Call CargarMeses
+'Call CargarImpuesto
+Call CargarEstaciones
+
+With MSFlexGrid1
+    .Rows = 3
+    .Cols = 3
+    .FixedRows = 2
+    .FixedCols = 0
+    .TextMatrix(0, 0) = "Fecha"
+    .TextMatrix(0, 1) = "Tipo"
+    .TextMatrix(0, 2) = "Monto"
+        .ColWidth(0) = 1300 ' Ancho del Código
+        .ColWidth(1) = 3500
+        .ColWidth(2) = 1000
+End With
+End Sub
+Private Sub CargarEstaciones()
+    Dim rs As New ADODB.Recordset
+    
+    ' Conectar a la base de datos
+    Call ConectarBD
+    
+    On Error GoTo ErrHandler
+    
+    cboEstaciones.Clear
+    
+    rs.Open "SELECT id, nombre FROM Empresas ORDER BY id", conn, adOpenStatic, adLockReadOnly
+    
+    ' Cargar los meses desde la base de datos al ComboBox
+    Do While Not rs.EOF
+        ' Puedes guardar el ID en ItemData si querés usarlo después
+        cboEstaciones.AddItem rs("nombre")
+        cboEstaciones.ItemData(cboEstaciones.NewIndex) = rs("id")
+        rs.MoveNext
+    Loop
+    
+    If cboEstaciones.ListCount > 0 Then
+        cboEstaciones.ListIndex = 0
+    End If
+    
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+    Exit Sub
+    
+ErrHandler:
+    MsgBox "Error al cargar el listado de estaciones: " & Err.Description, vbCritical, "Error"
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+End Sub
 Private Sub txtAño_KeyPress(KeyAscii As Integer)
 If (KeyAscii < 48 Or KeyAscii > 57) And KeyAscii <> 8 Then
         KeyAscii = 0 ' Cancelar el caracter si no es un numero

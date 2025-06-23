@@ -1,8 +1,8 @@
 VERSION 5.00
 Begin VB.Form FRMImpuestos 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Impuesto ITC"
-   ClientHeight    =   2670
+   Caption         =   "Impuesto"
+   ClientHeight    =   2820
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   7935
@@ -10,60 +10,59 @@ Begin VB.Form FRMImpuestos
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   2670
+   ScaleHeight     =   2820
    ScaleWidth      =   7935
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.Frame Frame2 
-      Height          =   735
+   Begin VB.Frame Frame1 
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   2535
       Left            =   120
-      TabIndex        =   9
-      Top             =   1800
+      TabIndex        =   0
+      Top             =   120
       Width           =   7695
-      Begin VB.TextBox txtUltimoImp 
-         Alignment       =   1  'Right Justify
+      Begin VB.ComboBox cboEstaciones 
          BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
+            Name            =   "Tahoma"
+            Size            =   9
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00C00000&
-         Height          =   405
-         Left            =   5640
-         TabIndex        =   11
-         Top             =   240
-         Width           =   1935
+         Height          =   330
+         Left            =   120
+         TabIndex        =   9
+         Text            =   "Combo1"
+         Top             =   480
+         Width           =   7455
       End
-      Begin VB.Label Label4 
-         AutoSize        =   -1  'True
-         Caption         =   "Ultimo monto de Impuesto ITC"
+      Begin VB.ComboBox cboImpuestos 
          BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   8.25
+            Name            =   "Tahoma"
+            Size            =   9
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00C00000&
-         Height          =   195
-         Left            =   2520
-         TabIndex        =   10
-         Top             =   330
-         Width           =   2985
+         Height          =   330
+         Left            =   120
+         Style           =   2  'Dropdown List
+         TabIndex        =   8
+         Top             =   1080
+         Width           =   4935
       End
-   End
-   Begin VB.Frame Frame1 
-      Height          =   1575
-      Left            =   120
-      TabIndex        =   0
-      Top             =   120
-      Width           =   7695
       Begin VB.CommandButton btnSalir 
          Caption         =   "&Salir"
          BeginProperty Font 
@@ -75,11 +74,13 @@ Begin VB.Form FRMImpuestos
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
-         Left            =   6240
-         TabIndex        =   8
-         Top             =   1080
-         Width           =   1335
+         Height          =   615
+         Left            =   6480
+         Picture         =   "FRMImpuestos.frx":058A
+         Style           =   1  'Graphical
+         TabIndex        =   7
+         Top             =   1800
+         Width           =   1095
       End
       Begin VB.CommandButton btnGrabar 
          Caption         =   "&Grabar"
@@ -92,16 +93,18 @@ Begin VB.Form FRMImpuestos
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
-         Left            =   4800
-         TabIndex        =   7
-         Top             =   1080
-         Width           =   1335
+         Height          =   615
+         Left            =   5160
+         Picture         =   "FRMImpuestos.frx":0B14
+         Style           =   1  'Graphical
+         TabIndex        =   6
+         Top             =   1800
+         Width           =   1095
       End
       Begin VB.TextBox txtMonto 
          BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   8.25
+            Name            =   "Tahoma"
+            Size            =   9
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -110,34 +113,16 @@ Begin VB.Form FRMImpuestos
          EndProperty
          Height          =   375
          Left            =   5160
-         TabIndex        =   5
+         TabIndex        =   4
          Text            =   "$00.00"
-         Top             =   480
+         Top             =   1080
          Width           =   2415
-      End
-      Begin VB.TextBox txtImpuesto 
-         Enabled         =   0   'False
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   375
-         Left            =   2880
-         TabIndex        =   3
-         Text            =   "ITC"
-         Top             =   480
-         Width           =   2175
       End
       Begin VB.TextBox txtFecOperacion 
          Enabled         =   0   'False
          BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   8.25
+            Name            =   "Tahoma"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -147,8 +132,33 @@ Begin VB.Form FRMImpuestos
          Height          =   375
          Left            =   120
          TabIndex        =   1
-         Top             =   480
-         Width           =   2655
+         Top             =   1920
+         Width           =   2415
+      End
+      Begin VB.Label Label4 
+         AutoSize        =   -1  'True
+         Caption         =   "Empresa"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Left            =   120
+         TabIndex        =   10
+         Top             =   240
+         Width           =   855
+      End
+      Begin VB.Line Line1 
+         BorderWidth     =   2
+         X1              =   2640
+         X2              =   6480
+         Y1              =   2160
+         Y2              =   2160
       End
       Begin VB.Label Label3 
          AutoSize        =   -1  'True
@@ -157,16 +167,16 @@ Begin VB.Form FRMImpuestos
             Name            =   "Verdana"
             Size            =   8.25
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
          Height          =   195
          Left            =   5160
-         TabIndex        =   6
-         Top             =   240
-         Width           =   510
+         TabIndex        =   5
+         Top             =   840
+         Width           =   585
       End
       Begin VB.Label Label2 
          AutoSize        =   -1  'True
@@ -175,16 +185,16 @@ Begin VB.Form FRMImpuestos
             Name            =   "Verdana"
             Size            =   8.25
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
          Height          =   195
-         Left            =   2880
-         TabIndex        =   4
-         Top             =   240
-         Width           =   810
+         Left            =   120
+         TabIndex        =   3
+         Top             =   840
+         Width           =   930
       End
       Begin VB.Label Label1 
          AutoSize        =   -1  'True
@@ -193,7 +203,7 @@ Begin VB.Form FRMImpuestos
             Name            =   "Verdana"
             Size            =   8.25
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
@@ -201,8 +211,15 @@ Begin VB.Form FRMImpuestos
          Height          =   195
          Left            =   120
          TabIndex        =   2
-         Top             =   240
-         Width           =   1425
+         Top             =   1680
+         Width           =   1635
+      End
+   End
+   Begin VB.Menu Operaciones 
+      Caption         =   "&Operaciones"
+      Visible         =   0   'False
+      Begin VB.Menu timpuesto 
+         Caption         =   "&Impuestos"
       End
    End
 End
@@ -217,37 +234,137 @@ Dim Impuestos As New ClaseImpuesto
 
 Private Sub btnGrabar_Click()
 Dim rs As New ADODB.Recordset
-    
+Dim idImpuestoSeleccionado As Integer
+Dim idEmpresaSeleccionado As Integer
+
     If DatosValidador Then Exit Sub
     
     ' Conectar a la base de datos utilizando el módulo de conexión
     Call ConectarBD
 
     On Error GoTo ErrHandler
-
-    rs.Open "exec sp_impuestos 'ITC'," & Impuestos.Monto & ",'" & Format(txtFecOperacion.Text, "yyyymmdd") & "'", conn, adOpenStatic, adLockReadOnly
     
-    MsgBox rs(0), vbInformation, "ESAPP"
+    If cboEstaciones.ListIndex <> -1 Then
+        idEmpresaSeleccionado = cboEstaciones.ItemData(cboEstaciones.ListIndex)
+    Else
+        MsgBox "No hay empresa seleccionado", vbInformation, "ESAPP"
+        Exit Sub
+    End If
+    
+    If cboImpuestos.ListIndex <> -1 Then
+        idImpuestoSeleccionado = cboImpuestos.ItemData(cboImpuestos.ListIndex)
+    Else
+        MsgBox "No hay impuestos seleccionado", vbInformation, "ESAPP"
+        Exit Sub
+    End If
+
+    rs.Open "exec sp_impuestos " & idImpuestoSeleccionado & ",null," & Replace(Impuestos.Monto, ",", ".") & ",'" & Format(txtFecOperacion.Text, "yyyymmdd") & "'," & idEmpresaSeleccionado & ",NULL,NULL,'MOD'", conn, adOpenStatic, adLockReadOnly
+    
+    MsgBox rs(1), vbInformation, "ESAPP"
+    If rs(0) = 1 Then
+        If MsgBox("¿Desea modificar el monto de este mes?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
+            rs.Close
+            rs.Open "exec sp_impuestos " & idImpuestoSeleccionado & ",null," & Replace(Impuestos.Monto, ",", ".") & ",'" & Format(txtFecOperacion.Text, "yyyymmdd") & "'," & idEmpresaSeleccionado & ",NULL,NULL,'UPD'", conn, adOpenStatic, adLockReadOnly
+            
+            MsgBox rs(0), vbInformation, "ESAPP"
+        End If
+    End If
     
     ' Cerrar el recordset
-    rs.Close
-    Call DesconectarBD
-    Call CargarUltImpu
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+'    Call CargarUltImpu
     Call LimpiarCampos
     Exit Sub
 
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Private Sub btnSalir_Click()
 Unload Me
 End Sub
 
+Private Sub cboEstaciones_Click()
+Call CargarImpuesto
+End Sub
+
 Private Sub Form_Load()
 txtFecOperacion.Text = Date
-Call CargarUltImpu
+Call CargarEstaciones
+Call CargarImpuesto
+'Call CargarUltImpu
+End Sub
+
+Private Sub CargarEstaciones()
+    Dim rs As New ADODB.Recordset
+    
+    ' Conectar a la base de datos
+    Call ConectarBD
+    
+    On Error GoTo ErrHandler
+    
+    cboEstaciones.Clear
+    
+    rs.Open "SELECT id, nombre FROM Empresas ORDER BY id", conn, adOpenStatic, adLockReadOnly
+    
+    ' Cargar los meses desde la base de datos al ComboBox
+    Do While Not rs.EOF
+        ' Puedes guardar el ID en ItemData si querés usarlo después
+        cboEstaciones.AddItem rs("nombre")
+        cboEstaciones.ItemData(cboEstaciones.NewIndex) = rs("id")
+        rs.MoveNext
+    Loop
+    
+    If cboEstaciones.ListCount > 0 Then
+        cboEstaciones.ListIndex = 0
+    End If
+    
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+    Exit Sub
+    
+ErrHandler:
+    MsgBox "Error al cargar el listado de estaciones: " & Err.Description, vbCritical, "Error"
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+End Sub
+
+Public Sub CargarImpuesto()
+    Dim rs As New ADODB.Recordset
+
+    ' Conectar a la base de datos
+    Call ConectarBD
+    
+    On Error GoTo ErrHandler
+    
+    cboImpuestos.Clear
+    Dim SQL As String
+    
+    rs.Open "select distinct t.id, t.tipo from Empresa_Impuesto ei join Timpuestos t on t.id = ei.idTipo where ei.idEmpresa = " & cboEstaciones.ItemData(cboEstaciones.ListIndex) & " ORDER BY id", conn, adOpenStatic, adLockReadOnly
+    
+    ' Cargar los meses desde la base de datos al ComboBox
+    Do While Not rs.EOF
+        ' Puedes guardar el ID en ItemData si querés usarlo después
+        cboImpuestos.AddItem rs("id") & " - " & rs("tipo")
+        cboImpuestos.ItemData(cboImpuestos.NewIndex) = rs("id")
+        rs.MoveNext
+    Loop
+    
+    If cboImpuestos.ListCount > 0 Then
+        cboImpuestos.ListIndex = 0
+    End If
+    
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+    Exit Sub
+    
+ErrHandler:
+    MsgBox "Error al cargar el listado de impuestos: " & Err.Description, vbCritical, "Error"
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Public Function DatosValidador() As Boolean
@@ -259,47 +376,33 @@ Else
 End If
 End Function
 
+Private Sub timpuesto_Click()
+frmTimpuesto.Show vbModal
+End Sub
+
 Private Sub txtMonto_KeyPress(KeyAscii As Integer)
-If (KeyAscii < 48 Or KeyAscii > 57) And KeyAscii <> 8 Then
-        KeyAscii = 0 ' Cancelar el caracter si no es un numero
+If (KeyAscii < 48 Or KeyAscii > 57) And KeyAscii <> 8 And KeyAscii <> 44 Then
+        KeyAscii = 0 ' Cancelar el caracter si no es número, backspace o coma
+    End If
+    
+    ' Evitar múltiples comas
+    If KeyAscii = 44 And InStr(txtMonto.Text, ",") > 0 Then
+        KeyAscii = 0
     End If
 End Sub
 
 Private Sub txtMonto_LostFocus()
 With Impuestos
-    .Monto = txtMonto.Text
-    txtMonto.Text = FormatoPrecio(.Monto)
+    ' Convertir el texto ingresado a formato numérico usando Replace
+    .Monto = Replace(txtMonto.Text, ",", ".")
+    txtMonto.Text = FormatoPrecio(Val(.Monto))
 End With
 End Sub
 
+Public Function FormatoPrecioCorto(ByVal Valor As Double) As String
+    FormatoPrecioCorto = Format$(Valor, "#.##0,00")  ' Sin símbolo $
+End Function
+
 Private Sub LimpiarCampos()
     txtMonto.Text = FormatoPrecio("$00.00")
-End Sub
-
-Private Sub CargarUltImpu()
-Dim rs As New ADODB.Recordset
-    
-    ' Conectar a la base de datos utilizando el módulo de conexión
-    Call ConectarBD
-
-    On Error GoTo ErrHandler
-
-    rs.Open "SELECT Monto FROM Impuestos WHERE id = (SELECT MAX(id) FROM Impuestos)", conn, adOpenStatic, adLockReadOnly
-    
-    If Not rs.EOF And Not rs.BOF Then
-        txtUltimoImp.Text = FormatoPrecio(rs(0))
-    Else
-        txtUltimoImp.Text = "0.00" ' O el valor por defecto que consideres
-    End If
-
-    
-    
-    ' Cerrar el recordset
-    rs.Close
-    Call DesconectarBD
-    Exit Sub
-
-ErrHandler:
-    MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
 End Sub

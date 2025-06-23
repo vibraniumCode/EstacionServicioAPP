@@ -22,8 +22,8 @@ Begin VB.Form FRMMenu
       Caption         =   "Facturación"
       Begin VB.Menu Impuestos 
          Caption         =   "&Impuestos"
-         Begin VB.Menu ITC 
-            Caption         =   "&Impuestos ITC"
+         Begin VB.Menu CrImpuestos 
+            Caption         =   "&Carga de Impuestos"
          End
          Begin VB.Menu Timp 
             Caption         =   "&Tabla de impuesto"
@@ -38,8 +38,8 @@ Begin VB.Form FRMMenu
    End
    Begin VB.Menu PEsp 
       Caption         =   "Procesos Especiales"
-      Begin VB.Menu Cierre 
-         Caption         =   "&Cierre"
+      Begin VB.Menu Reporte 
+         Caption         =   "&Reporte"
       End
    End
 End
@@ -50,19 +50,19 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Sub mnuNavbar_Click()
-
-End Sub
-
 Private Sub CClientes_Click()
 FRMCliente.Show vbModal
+End Sub
+
+Private Sub Cierre_Click()
+
 End Sub
 
 Private Sub Conbustible_Click()
 frmCombustible.Show vbModal
 End Sub
 
-Private Sub ITC_Click()
+Private Sub CrImpuestos_Click()
 FRMImpuestos.Show vbModal
 End Sub
 
@@ -70,6 +70,10 @@ Private Sub pventa_Click()
 FRMFacturacion.Show vbModal
 End Sub
 
+Private Sub Reporte_Click()
+FRMCierre.Show vbModal
+End Sub
+
 Private Sub Timp_Click()
-FRMListadoITC.Show vbModal
+FRMListadoImpuestos.Show vbModal
 End Sub

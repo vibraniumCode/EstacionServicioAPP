@@ -1,9 +1,9 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
 Begin VB.Form FRMCliente 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Administacion de Clientes - (LOCAL - DEFAULT)"
-   ClientHeight    =   8310
+   ClientHeight    =   8655
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   18735
@@ -11,7 +11,7 @@ Begin VB.Form FRMCliente
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8310
+   ScaleHeight     =   8655
    ScaleWidth      =   18735
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame Frame1 
@@ -24,16 +24,16 @@ Begin VB.Form FRMCliente
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   8055
+      Height          =   8415
       Left            =   120
       TabIndex        =   0
       Top             =   120
       Width           =   18495
       Begin VB.Frame Frame5 
-         Height          =   735
+         Height          =   975
          Left            =   360
          TabIndex        =   11
-         Top             =   7080
+         Top             =   7320
          Width           =   17775
          Begin VB.CommandButton btnSalir 
             Caption         =   "&Salir"
@@ -46,19 +46,21 @@ Begin VB.Form FRMCliente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   375
-            Left            =   15600
+            Height          =   615
+            Left            =   16320
+            Picture         =   "FRMCliente.frx":058A
+            Style           =   1  'Graphical
             TabIndex        =   12
             Top             =   240
-            Width           =   2055
+            Width           =   1215
          End
          Begin VB.Line Line1 
-            BorderColor     =   &H8000000D&
+            BorderColor     =   &H80000012&
             BorderWidth     =   2
-            X1              =   2280
-            X2              =   15600
-            Y1              =   420
-            Y2              =   420
+            X1              =   2400
+            X2              =   16200
+            Y1              =   555
+            Y2              =   555
          End
          Begin VB.Label lbTotalClientes 
             AutoSize        =   -1  'True
@@ -75,8 +77,8 @@ Begin VB.Form FRMCliente
             Height          =   195
             Left            =   120
             TabIndex        =   13
-            Top             =   285
-            Width           =   60
+            Top             =   480
+            Width           =   2100
          End
       End
       Begin VB.Frame Frame4 
@@ -94,35 +96,27 @@ Begin VB.Form FRMCliente
          Height          =   4695
          Left            =   360
          TabIndex        =   10
-         Top             =   2280
+         Top             =   2520
          Width           =   17775
-         Begin MSComctlLib.ListView lvClientes 
-            Height          =   4335
+         Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
+            Height          =   4215
             Left            =   120
             TabIndex        =   16
-            Top             =   240
+            Top             =   360
             Width           =   17535
             _ExtentX        =   30930
-            _ExtentY        =   7646
-            LabelWrap       =   -1  'True
-            HideSelection   =   -1  'True
-            FullRowSelect   =   -1  'True
-            GridLines       =   -1  'True
-            _Version        =   393217
-            ForeColor       =   -2147483640
-            BackColor       =   -2147483643
-            BorderStyle     =   1
-            Appearance      =   1
+            _ExtentY        =   7435
+            _Version        =   393216
+            SelectionMode   =   1
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Verdana"
-               Size            =   8.25
+               Size            =   9
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            NumItems        =   0
          End
       End
       Begin VB.Frame Frame3 
@@ -136,7 +130,7 @@ Begin VB.Form FRMCliente
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H8000000D&
-         Height          =   735
+         Height          =   975
          Left            =   360
          TabIndex        =   8
          Top             =   1440
@@ -152,11 +146,13 @@ Begin VB.Form FRMCliente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   375
+            Height          =   615
             Left            =   120
+            Picture         =   "FRMCliente.frx":0B14
+            Style           =   1  'Graphical
             TabIndex        =   9
             Top             =   240
-            Width           =   2055
+            Width           =   1455
          End
          Begin VB.CommandButton bntActualizar 
             Caption         =   "&Actualizar Cliente"
@@ -170,11 +166,13 @@ Begin VB.Form FRMCliente
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   375
-            Left            =   2400
+            Height          =   615
+            Left            =   1680
+            Picture         =   "FRMCliente.frx":0E9E
+            Style           =   1  'Graphical
             TabIndex        =   14
             Top             =   240
-            Width           =   2055
+            Width           =   1695
          End
          Begin VB.Label lbSeleccion 
             AutoSize        =   -1  'True
@@ -189,10 +187,10 @@ Begin VB.Form FRMCliente
             EndProperty
             ForeColor       =   &H000000C0&
             Height          =   240
-            Left            =   4680
+            Left            =   3600
             TabIndex        =   15
-            Top             =   300
-            Width           =   75
+            Top             =   440
+            Width           =   1995
          End
       End
       Begin VB.Frame Frame2 
@@ -262,7 +260,7 @@ Begin VB.Form FRMCliente
          End
          Begin VB.Label Label3 
             AutoSize        =   -1  'True
-            Caption         =   "Dirección"
+            Caption         =   "DIRECCIÓN"
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   8.25
@@ -276,7 +274,7 @@ Begin VB.Form FRMCliente
             Left            =   7680
             TabIndex        =   7
             Top             =   360
-            Width           =   795
+            Width           =   1035
          End
          Begin VB.Label Label2 
             AutoSize        =   -1  'True
@@ -298,7 +296,7 @@ Begin VB.Form FRMCliente
          End
          Begin VB.Label Label1 
             AutoSize        =   -1  'True
-            Caption         =   "Nombre"
+            Caption         =   "NOMBRE"
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   8.25
@@ -312,11 +310,11 @@ Begin VB.Form FRMCliente
             Left            =   120
             TabIndex        =   3
             Top             =   360
-            Width           =   675
+            Width           =   735
          End
       End
    End
-   Begin VB.Menu mnuListView 
+   Begin VB.Menu mnuGrillaClientes 
       Caption         =   "Menu"
       Visible         =   0   'False
       Begin VB.Menu mEliminar 
@@ -354,8 +352,8 @@ Private Sub bntActualizar_Click()
     MsgBox rs(0), vbInformation, "ESAPP"
     
     ' Cerrar el recordset
-    rs.Close
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
     Call CargarlvClientes
     Call LimpiarCampos
     
@@ -366,7 +364,8 @@ Private Sub bntActualizar_Click()
 
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Private Sub btnNuevoCliente_Click()
@@ -388,16 +387,16 @@ Private Sub btnNuevoCliente_Click()
     
     End With
     
-    ' Cerrar el recordset
-    rs.Close
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
     Call CargarlvClientes
     Call LimpiarCampos
     Exit Sub
 
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Private Sub LimpiarCampos()
@@ -426,69 +425,78 @@ Private Sub btnSalir_Click()
 Unload Me
 End Sub
 
-
-
 Private Sub Form_Load()
-
-'' Conectar a la base de datos
-'Call ConectarBD
-
-' Configuración del ListView
-With lvClientes
-    .View = lvwReport
-    .ColumnHeaders.Add , , "", 0
-    .ColumnHeaders.Add , , "Nro Cliente", 2000
-    .ColumnHeaders.Add , , "Nombre", 4000
-    .ColumnHeaders.Add , , "Direccion", 5000
-    .ColumnHeaders.Add , , "C.U.I.T.", 3000
+With MSFlexGrid1
+    .Rows = 4
+    .Cols = 4
+    .FixedRows = 3
+    .FixedCols = 0
+    .TextMatrix(0, 0) = "Nro Cliente"
+    .TextMatrix(0, 1) = "Nombre"
+    .TextMatrix(0, 2) = "Direccion"
+    .TextMatrix(0, 3) = "C.U.I.T."
+    .ColWidth(0) = 800
+    .ColWidth(1) = 4500
 End With
 
-' Cargar datos en el ListView
 Call CargarlvClientes
+
 End Sub
 
 Private Sub CargarlvClientes()
     Dim rs As New ADODB.Recordset
+    Dim fila As Integer
 
-    ' Conectar a la base de datos utilizando el módulo de conexión
+    ' Conectar a la base de datos
     Call ConectarBD
 
-    ' Limpiar el ListView antes de agregar los nuevos datos
-    lvClientes.ListItems.Clear
-
-    ' Obtener datos de la base
     On Error GoTo ErrHandler
 
-    rs.Open "SELECT '' as valor, FORMAT(id, '00000000') AS id, nombre, direccion, cuit FROM clientes", conn, adOpenStatic, adLockReadOnly
+    ' Consulta a la base de datos
+    rs.Open "SELECT FORMAT(id, '00000000') AS id, nombre, direccion, cuit FROM clientes", conn, adOpenStatic, adLockReadOnly
 
-    ' Cargar datos en el ListView
-    If Not rs.EOF Then
+    ' Configurar columnas del MSFlexGrid
+    With MSFlexGrid1
+        .Clear
+        .Rows = 1 ' Solo cabecera
+        .Cols = 4
+        .TextMatrix(0, 0) = "Id"
+        .TextMatrix(0, 1) = "Nombre"
+        .TextMatrix(0, 2) = "Dirección"
+        .TextMatrix(0, 3) = "C.U.I.T."
+
+        ' Agregar datos fila por fila
         Do While Not rs.EOF
-            With lvClientes.ListItems.Add(, , rs("valor"))
-                .SubItems(1) = rs("id")
-                .SubItems(2) = rs("nombre")
-                .SubItems(3) = rs("direccion")
-                .SubItems(4) = rs("cuit")
-            End With
+            .Rows = .Rows + 1
+            fila = .Rows - 1
+            .TextMatrix(fila, 0) = rs("id")
+            .TextMatrix(fila, 1) = UCase(rs("nombre"))
+            .TextMatrix(fila, 2) = UCase(rs("direccion"))
+            .TextMatrix(fila, 3) = UCase(rs("cuit"))
             rs.MoveNext
         Loop
-    Else
-        MsgBox "No hay productos registrados.", vbExclamation, "Aviso"
-    End If
-    lvClientes.ColumnHeaders(1).Width = 0
-    ' Cerrar el recordset
-    rs.Close
+    End With
     
-    Cantidad = lvClientes.ListItems.Count
-    lbTotalClientes.Caption = "Total de clientes: " & Cantidad
+        With MSFlexGrid1
+        .ColWidth(0) = 1700 ' Ancho del Código
+        .ColWidth(1) = 5000
+        .ColWidth(2) = 7000
+        .ColWidth(3) = 3700
+    End With
+
     
-    ' Desconectar
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+
+    ' Pintar filas alternadas
+    Call PintarFilasAlternadasFlex(MSFlexGrid1)
+    lbTotalClientes.Caption = "Cantidad de clientes: " & MSFlexGrid1.Rows - MSFlexGrid1.FixedRows
     Exit Sub
 
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Private Sub lvClientes_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -498,11 +506,6 @@ End If
 End Sub
 
 Private Sub mActualizar_Click()
-
-If lvClientes.ListItems.Count = 0 Then
-    MsgBox "No hay clientes para actualizar", vbInformation, "ESAPP"
-    Exit Sub
-End If
 
 On Error Resume Next
 
@@ -521,10 +524,14 @@ End Sub
 
 Private Sub CargarDatosBox()
 
-IdCliente = lvClientes.SelectedItem.SubItems(1)
-txtNombre.Text = lvClientes.SelectedItem.SubItems(2)
-txtDir.Text = lvClientes.SelectedItem.SubItems(3)
-txtCuit.Text = lvClientes.SelectedItem.SubItems(4)
+MSFlexGrid1.Col = 0
+IdCliente = MSFlexGrid1.Text
+MSFlexGrid1.Col = 1
+txtNombre.Text = MSFlexGrid1.Text
+MSFlexGrid1.Col = 2
+txtDir.Text = MSFlexGrid1.Text
+MSFlexGrid1.Col = 3
+txtCuit.Text = Replace(MSFlexGrid1.Text, "-", "")
     
 lbSeleccion.Caption = "Cliente seleccionado: " + Format$(CLng(IdCliente), "0000000000")
 
@@ -533,36 +540,47 @@ End Sub
 
 Private Sub mEliminar_Click()
 
-Dim rs As New ADODB.Recordset
-
-'Verificamos si tenemos elemento seleccionado
-If lvClientes.ListItems.Count <> 0 Then
-    If lvClientes.SelectedItem Is Nothing Then
-        MsgBox "Por favor, seleccione un elemento para eliminar", vbExclamation
-        Exit Sub
-    End If
-Else
-    MsgBox "No hay clientes para eliminar", vbInformation, "ESAPP"
-    Exit Sub
-End If
-
-IdCliente = lvClientes.SelectedItem.SubItems(1)
-
-Call ConectarBD
-
-On Error GoTo ErrHandler
-    rs.Open "EXEC sp_OperacionCliente 'ELIMINAR', " & IdCliente, conn, adOpenStatic, adLockReadOnly
-    MsgBox rs(0), vbInformation, "ESAPP"
+    Dim rs As New ADODB.Recordset
     
-    rs.Close
-    Call DesconectarBD
-    Call CargarlvClientes
+    On Error GoTo ErrHandler
+
+    Call ConectarBD
+
+    ' Ejecutamos el DELETE y contamos filas afectadas
+
+   rs.Open "EXEC sp_OperacionCliente 'ELIMINAR', " & idSeleccionado, conn, adOpenStatic, adLockReadOnly
+
+    If Not (rs.EOF And rs.BOF) Then
+        MsgBox rs(0), vbInformation, "Resultado"
+        Call CargarlvClientes
+    Else
+        MsgBox "No se pudo eliminar el cliente. Verifique el ID.", vbExclamation, "Aviso"
+    End If
+
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
     Exit Sub
-
 ErrHandler:
-    MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    MsgBox "Error al eliminar datos: " & Err.Description, vbCritical, "Error"
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+End Sub
 
+Private Sub MSFlexGrid1_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+ If Button = vbRightButton Then
+        Dim fila As Long
+        fila = MSFlexGrid1.FixedRows + (Y \ MSFlexGrid1.RowHeight(0)) - 1
+        
+        ' Validar que la fila clickeada sea válida (dentro del rango del grid)
+        If fila >= MSFlexGrid1.FixedRows And fila < MSFlexGrid1.Rows Then
+            MSFlexGrid1.Row = fila
+            MSFlexGrid1.Col = 0
+
+            idSeleccionado = MSFlexGrid1.Text
+
+            PopupMenu mnuGrillaClientes
+        End If
+    End If
 End Sub
 
 Private Sub txtCuit_Change()

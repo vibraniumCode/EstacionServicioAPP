@@ -1,16 +1,17 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
-Begin VB.Form FRMCombustible 
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Begin VB.Form frmCombustible 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Combustible"
-   ClientHeight    =   2910
+   ClientHeight    =   3135
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   9135
+   Icon            =   "frmCombustible.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   2910
+   ScaleHeight     =   3135
    ScaleWidth      =   9135
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -26,38 +27,30 @@ Begin VB.Form FRMCombustible
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H8000000D&
-      Height          =   2655
+      Height          =   2895
       Left            =   120
       TabIndex        =   0
       Top             =   120
       Width           =   8895
-      Begin MSComctlLib.ListView lvCombustible 
-         Height          =   2295
+      Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
+         Height          =   2535
          Left            =   4680
          TabIndex        =   8
-         Top             =   240
+         Top             =   300
          Width           =   4095
          _ExtentX        =   7223
-         _ExtentY        =   4048
-         LabelWrap       =   -1  'True
-         HideSelection   =   -1  'True
-         FullRowSelect   =   -1  'True
-         GridLines       =   -1  'True
-         _Version        =   393217
-         ForeColor       =   -2147483640
-         BackColor       =   -2147483643
-         BorderStyle     =   1
-         Appearance      =   1
+         _ExtentY        =   4471
+         _Version        =   393216
+         SelectionMode   =   1
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
-            Size            =   8.25
+            Size            =   9
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         NumItems        =   0
       End
       Begin VB.CommandButton btnActualizar 
          Caption         =   "&Actualizar"
@@ -71,8 +64,10 @@ Begin VB.Form FRMCombustible
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
+         Height          =   615
          Left            =   1560
+         Picture         =   "frmCombustible.frx":08CA
+         Style           =   1  'Graphical
          TabIndex        =   7
          Top             =   2160
          Width           =   1335
@@ -88,8 +83,10 @@ Begin VB.Form FRMCombustible
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
+         Height          =   615
          Left            =   3000
+         Picture         =   "frmCombustible.frx":0E54
+         Style           =   1  'Graphical
          TabIndex        =   6
          Top             =   2160
          Width           =   1335
@@ -172,8 +169,10 @@ Begin VB.Form FRMCombustible
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   375
+         Height          =   615
          Left            =   120
+         Picture         =   "frmCombustible.frx":13DE
+         Style           =   1  'Graphical
          TabIndex        =   5
          Top             =   2160
          Width           =   1335
@@ -212,9 +211,8 @@ Private Sub btnActualizar_Click()
     rs.Open "exec sp_OperacionCombustible 'MODIFICAR'," & idCombustible & ",'" & txtTipo.Text & "','" & txtPrecioActual.Text & "'", conn, adOpenStatic, adLockReadOnly
     MsgBox rs(0), vbInformation, "ESAPP"
     
-    ' Cerrar el recordset
-    rs.Close
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
     Call CargarlvCombustible
     Call LimpiarCampos
     
@@ -225,7 +223,8 @@ Private Sub btnActualizar_Click()
 
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Private Sub btnIngresar_Click()
@@ -245,15 +244,16 @@ Dim rs As New ADODB.Recordset
     MsgBox rs(0), vbInformation, "ESAPP"
     
     ' Cerrar el recordset
-    rs.Close
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
     Call CargarlvCombustible
     Call LimpiarCampos
     Exit Sub
 
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Public Function DatosValidador() As Boolean
@@ -278,13 +278,17 @@ Unload Me
 End Sub
 
 Private Sub Form_Load()
-' Configuración del ListView
-With lvCombustible
-    .View = lvwReport
-    .ColumnHeaders.Add , , "", 0
-    .ColumnHeaders.Add , , "id", 500
-    .ColumnHeaders.Add , , "Tipo", 2000
-    .ColumnHeaders.Add , , "Precio", 1500
+With MSFlexGrid1
+    .Rows = 3
+    .Cols = 3
+    .FixedRows = 2
+    .FixedCols = 0
+    .TextMatrix(0, 0) = "id"
+    .TextMatrix(0, 1) = "Tipo"
+    .TextMatrix(0, 2) = "Precio"
+    .ColWidth(0) = 800
+    .ColWidth(1) = 4500
+    .ColWidth(1) = 3500
 End With
 
 ' Cargar datos en el ListView
@@ -293,42 +297,52 @@ End Sub
 
 Private Sub CargarlvCombustible()
     Dim rs As New ADODB.Recordset
+    Dim fila As Integer
 
     ' Conectar a la base de datos utilizando el módulo de conexión
     Call ConectarBD
 
-    ' Limpiar el ListView antes de agregar los nuevos datos
-    lvCombustible.ListItems.Clear
-
     ' Obtener datos de la base
     On Error GoTo ErrHandler
 
-    rs.Open "SELECT '' as valor, id, tipo, precio FROM Combustible", conn, adOpenStatic, adLockReadOnly
+    rs.Open "SELECT id, tipo, precio FROM Combustible", conn, adOpenStatic, adLockReadOnly
 
-    ' Cargar datos en el ListView
-    If Not rs.EOF Then
+    ' Configurar columnas del MSFlexGrid
+    With MSFlexGrid1
+        .Clear
+        .Rows = 1 ' Solo cabecera
+        .Cols = 3
+        .TextMatrix(0, 0) = "Id"
+        .TextMatrix(0, 1) = "Tipo"
+        .TextMatrix(0, 2) = "Precio"
+
+        ' Agregar datos fila por fila
         Do While Not rs.EOF
-            With lvCombustible.ListItems.Add(, , rs("valor"))
-                .SubItems(1) = rs("id")
-                .SubItems(2) = rs("tipo")
-                .SubItems(3) = FormatoPrecio(rs("precio"))
-            End With
+            .Rows = .Rows + 1
+            fila = .Rows - 1
+            .TextMatrix(fila, 0) = rs("id")
+            .TextMatrix(fila, 1) = UCase(rs("tipo"))
+            .TextMatrix(fila, 2) = UCase(rs("precio"))
             rs.MoveNext
         Loop
-    Else
-        MsgBox "No hay combustible registrados.", vbExclamation, "Aviso"
-    End If
-    lvCombustible.ColumnHeaders(1).Width = 0
-    ' Cerrar el recordset
-    rs.Close
+    End With
+    With MSFlexGrid1
+        .ColWidth(0) = 700 ' Ancho del Código
+        .ColWidth(1) = 2280
+        .ColWidth(2) = 1000
+    End With
     
-    ' Desconectar
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+    
+     ' Pintar filas alternadas
+    Call PintarFilasAlternadasFlex(MSFlexGrid1)
     Exit Sub
 
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
 End Sub
 
 Private Sub lvCombustible_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
@@ -338,10 +352,6 @@ End If
 End Sub
 
 Private Sub mActualizar_Click()
-If lvCombustible.ListItems.Count = 0 Then
-    MsgBox "No hay combustible para actualizar", vbInformation, "ESAPP"
-    Exit Sub
-End If
 
 On Error Resume Next
 
@@ -360,53 +370,65 @@ End Sub
 
 Private Sub CargarDatosBox()
 
-idCombustible = lvCombustible.SelectedItem.SubItems(1)
-txtTipo.Text = lvCombustible.SelectedItem.SubItems(2)
-txtPrecioActual.Text = lvCombustible.SelectedItem.SubItems(3)
-
+MSFlexGrid1.col = 0
+idCombustible = MSFlexGrid1.Text
+MSFlexGrid1.col = 1
+txtTipo.Text = MSFlexGrid1.Text
+MSFlexGrid1.col = 2
+txtPrecioActual.Text = MSFlexGrid1.Text
 End Sub
 
 Private Sub mEliminar_Click()
 Dim rs As New ADODB.Recordset
 
-'Verificamos si tenemos elemento seleccionado
-If lvCombustible.ListItems.Count <> 0 Then
-    If lvCombustible.SelectedItem Is Nothing Then
-        MsgBox "Por favor, seleccione un elemento para eliminar", vbExclamation
-        Exit Sub
-    End If
-Else
-    MsgBox "No hay tipo de combustible para eliminar", vbInformation, "ESAPP"
-    Exit Sub
-End If
-
-idCombustible = lvCombustible.SelectedItem.SubItems(1)
-
 Call ConectarBD
 
 On Error GoTo ErrHandler
-    rs.Open "EXEC sp_OperacionCombustible 'ELIMINAR', " & idCombustible, conn, adOpenStatic, adLockReadOnly
+    rs.Open "EXEC sp_OperacionCombustible 'ELIMINAR', " & idSeleccionado, conn, adOpenStatic, adLockReadOnly
     MsgBox rs(0), vbInformation, "ESAPP"
     
-    rs.Close
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
     Call CargarlvCombustible
     Exit Sub
 
 ErrHandler:
     MsgBox "Error al cargar datos: " & Err.Description, vbCritical, "Error"
-    Call DesconectarBD
+    If rs.State = adStateOpen Then rs.Close
+    If conn.State = adStateOpen Then Call DesconectarBD
+End Sub
+
+Private Sub MSFlexGrid1_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+If Button = vbRightButton Then
+    Dim fila As Long
+    fila = MSFlexGrid1.FixedRows + (Y \ MSFlexGrid1.RowHeight(0)) - 1
+    
+    ' Validar que la fila clickeada sea válida (dentro del rango del grid)
+    If fila >= MSFlexGrid1.FixedRows And fila < MSFlexGrid1.Rows Then
+        MSFlexGrid1.Row = fila
+        MSFlexGrid1.col = 0
+
+        idSeleccionado = MSFlexGrid1.Text
+
+        PopupMenu mnuListView
+    End If
+End If
 End Sub
 
 Private Sub txtPrecioActual_KeyPress(KeyAscii As Integer)
-If (KeyAscii < 48 Or KeyAscii > 57) And KeyAscii <> 8 Then
-        KeyAscii = 0 ' Cancelar el caracter si no es un numero
+If (KeyAscii < 48 Or KeyAscii > 57) And KeyAscii <> 8 And KeyAscii <> 44 Then
+        KeyAscii = 0 ' Cancelar el caracter si no es número, backspace o coma
+    End If
+    
+    ' Evitar múltiples comas
+    If KeyAscii = 44 And InStr(txtPrecioActual.Text, ",") > 0 Then
+        KeyAscii = 0
     End If
 End Sub
 
 Private Sub txtPrecioActual_LostFocus()
 With Combustibles
-    .Precio = txtPrecioActual.Text
+    .Precio = Replace(txtPrecioActual.Text, ",", ".")
     txtPrecioActual.Text = FormatoPrecio(.Precio)
 End With
 End Sub

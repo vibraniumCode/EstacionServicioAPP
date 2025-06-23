@@ -1,23 +1,11 @@
 Attribute VB_Name = "ModuloUtilidades"
 Option Explicit
 
-Global nroFactura As Long
-
-'Public Function ValidadorMsg() As Boolean
-'If Facturacion.txtNombre.Text = "" Then
-'    MsgBox "Ingrese el nombre del cliente", vbInformation, "Doom"
-'    ValidadorMsg = True
-'ElseIf Facturacion.txtCuit.Text = "" Then
-'    MsgBox "Ingrese el C.U.I.T. del cliente", vbInformation, "Doom"
-'    ValidadorMsg = True
-'ElseIf Facturacion.txtDireccion.Text = "" Then
-'    MsgBox "Ingrese la dirección del cliente", vbInformation, "Doom"
-'    ValidadorMsg = True
-'Else
-'    ValidadorMsg = False
-'End If
-'End Function
-
+Global nroFactura As String
+Global codFactura As String
+Global idSeleccionado As String
+Global executeSQL As String
+Global idEstacionEmpresa As Integer
 
 ' Convierte un valor de texto en número limpio
 Public Function LimpiarValor(ByVal texto As String) As Double
@@ -46,3 +34,25 @@ End Sub
 Public Function FormatearNumeroFactura(ByVal numero As Long) As String
     FormatearNumeroFactura = Format(numero, "00000000")
 End Function
+
+Public Sub PintarFilasAlternadasFlex(ByRef grilla As MSFlexGrid)
+    Dim i As Integer, j As Integer
+    With grilla
+        .GridLines = flexGridFlat
+        .GridColor = RGB(200, 200, 200)
+        .GridColorFixed = RGB(160, 160, 160)
+        .BackColorFixed = RGB(220, 220, 220)
+        .ForeColorFixed = vbBlack
+        .CellAlignment = flexAlignLeftCenter
+        
+        For i = .FixedRows To .Rows - 1
+            For j = 0 To .Cols - 1
+                .Row = i
+                .col = j
+                .CellBackColor = IIf(i Mod 2 = 0, RGB(240, 240, 240), vbWhite)
+                .CellAlignment = flexAlignLeftCenter
+            Next j
+        Next i
+    End With
+End Sub
+

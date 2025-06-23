@@ -13,59 +13,59 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 
-Private mPrecioNeto As Double
-Private mPrecioUnitario As Double
-Private mCantidad As Integer
-Private mDescripcion As String
+Private pLitros As Double
+Private pPrecioUnitario As Double
+Private pPrecioNeto As Double
+Private pMontoITC As Double
 
 
-' Propiedad para el precio unitario
-Public Property Get precioNeto() As Double
-    precioNeto = mPrecioNeto
+' Propiedades públicas
+Public Property Let PrecioUnitario(ByVal value As Double)
+    pPrecioUnitario = value
 End Property
 
-Public Property Let precioNeto(ByVal Valor As Double)
-    mPrecioNeto = Valor
-End Property
-
-' Propiedad para el precio unitario
 Public Property Get PrecioUnitario() As Double
-    PrecioUnitario = mPrecioUnitario
+    PrecioUnitario = pPrecioUnitario
 End Property
 
-Public Property Let PrecioUnitario(ByVal Valor As Double)
-    mPrecioUnitario = Valor
+Public Property Let litros(ByVal value As Double)
+    pLitros = value
 End Property
 
-' Propiedad para la cantidad
-Public Property Get Cantidad() As Integer
-    Cantidad = mCantidad
+Public Property Get litros() As Double
+    litros = pLitros
 End Property
 
-Public Property Let Cantidad(ByVal Valor As Integer)
-    If Valor < 0 Then
-        mCantidad = 0
-    Else
-        mCantidad = Valor
-    End If
+Public Property Let precioNeto(ByVal value As Double)
+    pPrecioNeto = value
 End Property
 
-'Propiedad para la descripcion
-Public Property Get Descripcion() As String
-    Descripcion = mDescripcion
+Public Property Get precioNeto() As Double
+    precioNeto = pPrecioNeto
 End Property
 
-Public Property Let Descripcion(ByVal Valor As String)
-    mDescripcion = Valor
+Public Property Let MontoITC(ByVal value As Double)
+    pMontoITC = value
 End Property
 
-' Calcular el precio neto
+Public Property Get MontoITC() As Double
+    MontoITC = pMontoITC
+End Property
+
+' Métodos de cálculo
 Public Function CalcularPrecioNeto() As Double
-    If mCantidad = 0 Then
-        MostrarAlerta "La cantidad no puede ser cero. Ingrese un valor válido."
-        CalcularPrecioNeto = 0
-        Exit Function
-    End If
-    
-    CalcularPrecioNeto = mPrecioUnitario * mCantidad
+    CalcularPrecioNeto = Me.litros * Me.PrecioUnitario
 End Function
+
+Public Function CalcularIVA() As Double
+    CalcularIVA = pPrecioNeto * 0.21
+End Function
+
+Public Function CalcularITC() As Double
+    CalcularITC = pLitros * pMontoITC
+End Function
+
+Public Function CalcularTotal() As Double
+    CalcularTotal = pPrecioNeto + CalcularIVA() + CalcularITC()
+End Function
+
