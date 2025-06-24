@@ -134,7 +134,7 @@ Begin VB.Form FRMFacturacion
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   143785985
+         Format          =   134021121
          CurrentDate     =   45777
       End
       Begin VB.Frame Frame7 
@@ -848,13 +848,13 @@ Private Sub Form_Resize()
     End If
 End Sub
 
-Private Sub Frame5_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-Frame5.Caption = "ITC $"
-End Sub
-
-Private Sub Image1_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
-Frame5.Caption = "ITC $ - " & fecImpITC
-End Sub
+'Private Sub Frame5_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+'Frame5.Caption = "ITC $"
+'End Sub
+'
+'Private Sub Image1_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+'Frame5.Caption = "ITC $ - " & fecImpITC
+'End Sub
 
 Private Sub precioNeto_LostFocus()
     producto.precioNeto = LimpiarValor(precioNeto.Text)
@@ -912,13 +912,13 @@ Private Sub ActualizarPrecio()
 End Sub
 
 ' Procedimiento para limpiar los campos
-Private Sub LimpiarCampos()
-    txtDescripcion.Text = ""
-    btnCantidad.Text = 1
-    Preciouni.Text = "$" & Format(0, "#,##0.00")
-    precioNeto.Text = "$" & Format(0, "#,##0.00")
-    Me.Tag = ""  ' Limpiar el ID guardado
-End Sub
+'Private Sub LimpiarCampos()
+'    txtDescripcion.Text = ""
+'    btnCantidad.Text = 1
+'    Preciouni.Text = "$" & Format(0, "#,##0.00")
+'    precioNeto.Text = "$" & Format(0, "#,##0.00")
+'    Me.Tag = ""  ' Limpiar el ID guardado
+'End Sub
 
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Private Sub CargarClientesCombo()
@@ -994,28 +994,28 @@ Private Sub cboClientes_LostFocus()
         CargarClientesCombo
     End If
 End Sub
-Private Sub CargarImpuestoITC()
-     Dim rs As New ADODB.Recordset
-    
-    ' Conectar a la base de datos
-    Call ConectarBD
-    
-    On Error GoTo ErrHandler
-    
-    rs.Open "select top 1 monto, fechaOperacion from Impuestos order by fechaOperacion desc", conn, adOpenStatic, adLockReadOnly
-    
-    txtMontoITC.Text = FormatoPrecio(rs(0))
-    fecImpITC = rs(1)
-    
-    If rs.State = adStateOpen Then rs.Close
-    If conn.State = adStateOpen Then Call DesconectarBD
-    Exit Sub
-
-ErrHandler:
-    MsgBox "Error al cargar el impuesto ITC: " & Err.Description, vbCritical, "Error"
-    If rs.State = adStateOpen Then rs.Close
-    If conn.State = adStateOpen Then Call DesconectarBD
-End Sub
+'Private Sub CargarImpuestoITC()
+'     Dim rs As New ADODB.Recordset
+'
+'    ' Conectar a la base de datos
+'    Call ConectarBD
+'
+'    On Error GoTo ErrHandler
+'
+'    rs.Open "select top 1 monto, fechaOperacion from Impuestos order by fechaOperacion desc", conn, adOpenStatic, adLockReadOnly
+'
+'    txtMontoITC.Text = FormatoPrecio(rs(0))
+'    fecImpITC = rs(1)
+'
+'    If rs.State = adStateOpen Then rs.Close
+'    If conn.State = adStateOpen Then Call DesconectarBD
+'    Exit Sub
+'
+'ErrHandler:
+'    MsgBox "Error al cargar el impuesto ITC: " & Err.Description, vbCritical, "Error"
+'    If rs.State = adStateOpen Then rs.Close
+'    If conn.State = adStateOpen Then Call DesconectarBD
+'End Sub
 
 Private Sub CargarComboCombustible()
     Dim rs As New ADODB.Recordset

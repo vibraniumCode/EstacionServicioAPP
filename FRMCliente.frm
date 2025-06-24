@@ -501,7 +501,7 @@ End Sub
 
 Private Sub lvClientes_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
 If Button = vbRightButton Then
-    PopupMenu mnuListView
+    PopupMenu mnuGrillaClientes
 End If
 End Sub
 
@@ -524,13 +524,13 @@ End Sub
 
 Private Sub CargarDatosBox()
 
-MSFlexGrid1.Col = 0
+MSFlexGrid1.col = 0
 IdCliente = MSFlexGrid1.Text
-MSFlexGrid1.Col = 1
+MSFlexGrid1.col = 1
 txtNombre.Text = MSFlexGrid1.Text
-MSFlexGrid1.Col = 2
+MSFlexGrid1.col = 2
 txtDir.Text = MSFlexGrid1.Text
-MSFlexGrid1.Col = 3
+MSFlexGrid1.col = 3
 txtCuit.Text = Replace(MSFlexGrid1.Text, "-", "")
     
 lbSeleccion.Caption = "Cliente seleccionado: " + Format$(CLng(IdCliente), "0000000000")
@@ -574,7 +574,7 @@ Private Sub MSFlexGrid1_MouseUp(Button As Integer, Shift As Integer, X As Single
         ' Validar que la fila clickeada sea válida (dentro del rango del grid)
         If fila >= MSFlexGrid1.FixedRows And fila < MSFlexGrid1.Rows Then
             MSFlexGrid1.Row = fila
-            MSFlexGrid1.Col = 0
+            MSFlexGrid1.col = 0
 
             idSeleccionado = MSFlexGrid1.Text
 
