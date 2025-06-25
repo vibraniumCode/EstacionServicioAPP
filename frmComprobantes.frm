@@ -152,7 +152,19 @@ End Sub
 
 Private Sub btnPrint_Click()
 If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
-    MsgBox "Verificando impresora...", vbInformation, "ESAPP"
+'    MsgBox "Verificando impresora...", vbInformation, "ESAPP"
+    Dim x As Printer
+    For Each x In Printers
+    If x.DeviceName = "POS-80-Series" Then
+        MsgBox "Imprimiendo comprobante"
+        Printer.FontName = "SinSum"
+        Printer.FontSize = 9
+        Printer.FontBold = True
+        Printer.Print txtTicket.Text
+        Set Printer = x
+    Exit For
+    End If
+    Next
 End If
 End Sub
 
