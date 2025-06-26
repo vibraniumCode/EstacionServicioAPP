@@ -158,7 +158,7 @@ If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = 
     If X.DeviceName = "POS-80-Series" Then
         MsgBox "Imprimiendo comprobante"
         Printer.FontName = "SinSum"
-        Printer.FontSize = 9
+        Printer.FontSize = 8
         Printer.FontBold = True
         Printer.Print txtTicket2.Text
         Set Printer = X
@@ -212,41 +212,41 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     txtTicket2.SelBold = True
     txtTicket2.SelText = txtTicket2.SelText + "            PETRORAFAELA  S R L" + vbCrLf
     txtTicket2.SelBold = False
-    txtTicket2.SelText = txtTicket2.SelText + "-------------------------------------------------" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "---------------------------------------------------------" + vbCrLf
     txtTicket2.SelBold = True
     txtTicket2.SelText = txtTicket2.SelText + "TIQUET FACTURA A (Cód.081) N° "
     txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + CStr(Format(rs(0), "0000")) & "-" + CStr(Format(rs(1), "00000000")) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "                                 Fecha " + rs(9) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "                                    Hora " + rs(10) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "-------------------------------------------------" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "                                                            Fecha " + rs(9) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "Hora " + rs(10) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "---------------------------------------------------------" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + UCase(rs(11)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "C.U.I.T. Nro.: " + rs(12) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "IVA RESPONSABLE INSCRIPTO" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + UCase(rs(13)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "CONTADO" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "COMPROBANTES ASOCIADO:" + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "Cód. 001                           00001-00000001" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "Cód. 001                                             00001-00000001" + vbCrLf
     txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + "            PETRORAFAELA  S R L" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "                         PETRORAFAELA  S R L" + vbCrLf
     txtTicket2.SelBold = False
-    txtTicket2.SelText = txtTicket2.SelText + "-------------------------------------------------"
+    txtTicket2.SelText = txtTicket2.SelText + "---------------------------------------------------------" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + CStr(rs(16)) + " x " + CStr(rs(17)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "(" + CStr(rs(14)) + ")" + UCase(rs(15)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "ITC Unit.x Lt: " + CStr(rs(20)) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + CStr(rs(16)) + " x " + CStr(rs(18)) + "   (21)[83,88]         " + CStr(rs(19)) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "Ajuste por redondeo       (21)               0,00" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + CStr(rs(16)) + " x " + CStr(rs(18)) + "   (21)[83,88]                        " + CStr(rs(19)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "Ajuste por redondeo       (21)                            0,00" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "SUBTOT. IMP. NETO GRAVADO               " + CStr(rs(19)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "SUBTOT. IMP. NETO GRAVADO                  " + CStr(rs(19)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "ALICUOTA 21,00%                        " + CStr(rs(23)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "ALICUOTA 21,00%                                         " + CStr(rs(23)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "10-Impuesto interno a nivel item         " + CStr(rs(22)) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "07 - IDC                                   " + CStr(rs(21)) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "IMPORTE TOTAL OTROS TRIBUTOS             " + CStr(rs(24)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "07 - IDC                                                                  " + CStr(rs(21)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "IMPORTE TOTAL OTROS TRIBUTOS         " + CStr(rs(24)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
     txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + "TOTAL                            " + CStr(rs(25)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "TOTAL                                                                 " + CStr(rs(25)) + vbCrLf
     txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "RECIBI/MOS" + vbCrLf
@@ -461,6 +461,4 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     txtTicket2.SelText = txtTicket2.SelText + "     Print.Al.Consumidor Bs As 0800-222-9042" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
 End Sub
-
-
 
