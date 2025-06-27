@@ -6,13 +6,13 @@ Begin VB.Form frmComprobantes
    ClientHeight    =   9375
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   7605
+   ClientWidth     =   8010
    Icon            =   "frmComprobantes.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   9375
-   ScaleWidth      =   7605
+   ScaleWidth      =   8010
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
    Begin VB.Frame frmComprobante 
@@ -31,11 +31,28 @@ Begin VB.Form frmComprobantes
       Left            =   120
       TabIndex        =   0
       Top             =   120
-      Width           =   7335
+      Width           =   7815
+      Begin VB.CommandButton Command2 
+         Caption         =   "arial"
+         BeginProperty Font 
+            Name            =   "Arial Narrow"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   1575
+         Left            =   6480
+         TabIndex        =   7
+         Top             =   3120
+         Width           =   1215
+      End
       Begin VB.CommandButton Command1 
-         Caption         =   "Command1"
+         Caption         =   "sinsum"
          Height          =   1215
-         Left            =   6000
+         Left            =   6480
          TabIndex        =   6
          Top             =   4800
          Width           =   1215
@@ -52,7 +69,7 @@ Begin VB.Form frmComprobantes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   6000
+         Left            =   6480
          Picture         =   "frmComprobantes.frx":08CA
          Style           =   1  'Graphical
          TabIndex        =   5
@@ -71,7 +88,7 @@ Begin VB.Form frmComprobantes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   6000
+         Left            =   6480
          Picture         =   "frmComprobantes.frx":0E54
          Style           =   1  'Graphical
          TabIndex        =   4
@@ -83,8 +100,8 @@ Begin VB.Form frmComprobantes
          Left            =   120
          TabIndex        =   3
          Top             =   360
-         Width           =   5775
-         _ExtentX        =   10186
+         Width           =   6255
+         _ExtentX        =   11033
          _ExtentY        =   15266
          _Version        =   393217
          Enabled         =   0   'False
@@ -112,7 +129,7 @@ Begin VB.Form frmComprobantes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   855
-         Left            =   6000
+         Left            =   6480
          Picture         =   "frmComprobantes.frx":145A
          Style           =   1  'Graphical
          TabIndex        =   2
@@ -183,10 +200,28 @@ If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = 
     For Each X In Printers
     If X.DeviceName = "POS-80-Series" Then
         MsgBox "Imprimiendo comprobante"
-'        Printer.FontName = "SinSum"
-'        Printer.FontSize = 8
+        Printer.FontName = "SinSum"
+        Printer.FontSize = 8
         Printer.FontBold = True
-        Printer.Print txtTicket2.TextRTF
+        Printer.Print txtTicket2.Text
+        Set Printer = X
+    Exit For
+    End If
+    Next
+End If
+End Sub
+
+Private Sub Command2_Click()
+If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
+'    MsgBox "Verificando impresora...", vbInformation, "ESAPP"
+    Dim X As Printer
+    For Each X In Printers
+    If X.DeviceName = "POS-80-Series" Then
+        MsgBox "Imprimiendo comprobante"
+        Printer.FontName = "Arial"
+        Printer.FontSize = 8
+        Printer.FontBold = True
+        Printer.Print txtTicket2.Text
         Set Printer = X
     Exit For
     End If
@@ -236,15 +271,17 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     txtTicket2.SelText = txtTicket2.SelText + "Inicio de Actividades: " + rs(8) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "IVA RESPONSABLE INSCRIPTO" + vbCrLf
     txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + "                           PETRORAFAELA  S R L" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "                     PETRORAFAELA  S R L" + vbCrLf
     txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + "--------------------------------------------------------------------" + vbCrLf
-    txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + "TIQUET FACTURA A (Cód.081) N° "
-    txtTicket2.SelBold = False
+'    txtTicket2.SelBold = True
+    txtTicket2.SelText = txtTicket2.SelText + "TIQUET FACTURA A (Cód.081) N°                         "
+'    txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + CStr(Format(rs(0), "0000")) & "-" + CStr(Format(rs(1), "00000000")) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "                                                            Fecha " + rs(9) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "Hora " + rs(10) + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "                                                            Fecha " + rs(9) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("", "Fecha " + rs(9)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("", "Hora " + rs(10)) + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "                                                       Hora " + rs(10) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "--------------------------------------------------------------------" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + UCase(rs(11)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "C.U.I.T. Nro.: " + rs(12) + vbCrLf
@@ -252,28 +289,36 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     txtTicket2.SelText = txtTicket2.SelText + UCase(rs(13)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "CONTADO" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "COMPROBANTES ASOCIADO:" + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "Cód. 001                                      00001-00000001" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("Cód. 001", "00001-00000001") + vbCrLf
     txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + "                           PETRORAFAELA  S R L" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "                     PETRORAFAELA  S R L" + vbCrLf
     txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + "--------------------------------------------------------------------" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + CStr(rs(16)) + " x " + CStr(rs(17)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "(" + CStr(rs(14)) + ")" + UCase(rs(15)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "ITC Unit.x Lt: " + CStr(rs(20)) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + CStr(rs(16)) + " x " + CStr(rs(18)) + "   (21)[83,88]                        " + CStr(rs(19)) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "Ajuste por redondeo       (21)                          0,00" + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + CStr(rs(16)) + " x " + CStr(rs(18)) + "   (21)[83,88]                        " + CStr(rs(19)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68(CStr(rs(16)) + " x " + CStr(rs(18)) + "   (21)[83,88]", CStr(rs(19))) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("Ajuste por redondeo       (21)", "0,00") + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "Ajuste por redondeo       (21)                          0,00" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "SUBTOT. IMP. NETO GRAVADO                  " + CStr(rs(19)) + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "SUBTOT. IMP. NETO GRAVADO                  " + CStr(rs(19)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("SUBTOT. IMP. NETO GRAVADO", CStr(rs(19))) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "ALICUOTA 21,00%                                         " + CStr(rs(23)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("ALICUOTA 21,00%", CStr(rs(23))) + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "ALICUOTA 21,00%                                         " + CStr(rs(23)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "10-Impuesto interno a nivel item         " + CStr(rs(22)) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "07 - IDC                                                                  " + CStr(rs(21)) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "IMPORTE TOTAL OTROS TRIBUTOS         " + CStr(rs(24)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("10-Impuesto interno a nivel item", CStr(rs(22))) + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "10-Impuesto interno a nivel item         " + CStr(rs(22)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("07 - IDC", CStr(rs(21))) + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "07 - IDC                                                                  " + CStr(rs(21)) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("IMPORTE TOTAL OTROS TRIBUTOS", CStr(rs(24))) + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "IMPORTE TOTAL OTROS TRIBUTOS         " + CStr(rs(24)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
-    txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + "TOTAL                                                                 " + CStr(rs(25)) + vbCrLf
-    txtTicket2.SelBold = False
+'    txtTicket2.SelBold = True
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("TOTAL", CStr(rs(25))) + vbCrLf
+'    txtTicket2.SelText = txtTicket2.SelText + "TOTAL                                                                 " + CStr(rs(25)) + vbCrLf
+'    txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "RECIBI/MOS" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "Cant. Cuota: 1" + vbCrLf
@@ -488,3 +533,36 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
 End Sub
 
+Function FormatearLinea68(ByVal concepto As String, ByVal importe As String) As String
+    Dim totalLength As Integer
+    totalLength = 68
+    
+    Dim espacios As String
+    Dim textoFinal As String
+    
+    ' Asegurarse de que el número esté alineado a la derecha
+    Dim textoIzq As String
+    Dim textoDer As String
+    
+    textoIzq = Trim(concepto)
+    textoDer = Trim(importe)
+    
+    ' Calcular cuántos espacios hay entre el texto y el importe
+    Dim cantidadEspacios As Integer
+    cantidadEspacios = totalLength - Len(textoIzq) - Len(textoDer)
+    
+    If cantidadEspacios < 0 Then
+        ' Si es negativo, recortamos el concepto
+        textoIzq = Left(textoIzq, totalLength - Len(textoDer) - 1)
+        cantidadEspacios = 1
+    End If
+    
+    espacios = Space(cantidadEspacios)
+    textoFinal = textoIzq & espacios & textoDer
+    
+    FormatearLinea68 = textoFinal
+End Function
+
+Private Sub txtTicket2_Change()
+
+End Sub
