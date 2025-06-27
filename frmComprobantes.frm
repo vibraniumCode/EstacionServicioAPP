@@ -194,22 +194,30 @@ End If
 End Sub
 
 Private Sub Command1_Click()
-If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
-'    MsgBox "Verificando impresora...", vbInformation, "ESAPP"
-    Dim X As Printer
-    For Each X In Printers
-    If X.DeviceName = "POS-80-Series" Then
-        MsgBox "Imprimiendo comprobante"
-        Printer.FontName = "SinSum"
-        Printer.FontSize = 8
-        Printer.FontBold = True
-        Printer.Print txtTicket2.Text
-        Set Printer = X
-    Exit For
+    If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
+        Dim X As Printer
+        For Each X In Printers
+            If X.DeviceName = "POS-80-Series" Then
+                Set Printer = X  ' ?? Esto debe ir antes de configurar fuente
+                MsgBox "Imprimiendo comprobante"
+
+                ' Configuración de fuente
+                Printer.FontName = "SinSum"
+                Printer.FontSize = 8
+                Printer.FontBold = True
+
+                ' Imprimir contenido
+                Printer.Print txtTicket2.Text
+
+                ' Enviar a impresora
+                Printer.EndDoc
+
+                Exit For
+            End If
+        Next
     End If
-    Next
-End If
 End Sub
+
 
 Private Sub Command2_Click()
 If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
@@ -563,6 +571,3 @@ Function FormatearLinea68(ByVal concepto As String, ByVal importe As String) As 
     FormatearLinea68 = textoFinal
 End Function
 
-Private Sub txtTicket2_Change()
-
-End Sub
