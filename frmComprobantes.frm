@@ -51,6 +51,15 @@ Begin VB.Form frmComprobantes
       End
       Begin VB.CommandButton Command1 
          Caption         =   "sinsum"
+         BeginProperty Font 
+            Name            =   "SimSun"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   1215
          Left            =   6480
          TabIndex        =   6
@@ -202,7 +211,7 @@ Private Sub Command1_Click()
                 MsgBox "Imprimiendo comprobante"
 
                 ' Configuración de fuente
-                Printer.FontName = "SinSum"
+                Printer.FontName = "SimSun"
                 Printer.FontSize = 8
                 Printer.FontBold = True
 
