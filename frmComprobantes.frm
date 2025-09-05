@@ -330,7 +330,7 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     'txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + "----------------------------------------------------------" + vbCrLf
 '    'txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + "TIQUET FACTURA A (Cód.081) N°"
+    txtTicket2.SelText = txtTicket2.SelText + "TIQUET FACTURA A(Cód.081) N°"
 '    'txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + CStr(Format(rs(0), "0000")) & "-" + CStr(Format(rs(1), "00000000")) + vbCrLf
 '    txtTicket2.SelText = txtTicket2.SelText + "                                                            Fecha " + rs(9) + vbCrLf
@@ -400,7 +400,7 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     'txtTicket2.SelBold = True
     txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("Cód. 081 - TIQUET FACTURA A", "") + vbCrLf
     'txtTicket2.SelBold = False
-    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("", "N° " + CStr(Format(rs(0), "0000")) & "-" + CStr(Format(rs(1), "00000000"))) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("", "N°" + CStr(Format(rs(0), "0000")) & "-" + CStr(Format(rs(1), "00000000"))) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("Fecha " + CStr(rs(9)), "Hora " + CStr(rs(10))) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "-------------------------------------------------" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + UCase(rs(11)) + vbCrLf
@@ -423,7 +423,7 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     'txtTicket2.SelBold = True
     txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("SUBTOTAL IMPORTE IMPORTE EXENTO", "0,00") + vbCrLf
     'txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("SUBTOTAL IMPORTE NETO FRAVADO", CStr(rs(19))) + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("SUBTOTAL IMPORTE NETO GRAVADO", CStr(rs(19))) + vbCrLf
     'txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "Concepto" + vbCrLf
@@ -591,7 +591,7 @@ End Sub
 Function FormatearLinea68(ByVal concepto As String, ByVal importe As String) As String
     Dim totalLength As Integer
     'totalLength = 68
-    totalLength = 42
+    totalLength = 41
     Dim espacios As String
     Dim textoFinal As String
     
