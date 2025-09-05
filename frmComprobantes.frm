@@ -291,7 +291,7 @@ Dim sql As String
 Call ConectarBD
 On Error GoTo ErrHandler
 
-    sql = "sp_comprobante " & codFactura & "," & nroFactura & "," & idEstacionEmpresa
+    sql = "exec sp_comprobante " & codFactura & "," & nroFactura & "," & idEstacionEmpresa
     
     Select Case idEstacionEmpresa
         Case 1
