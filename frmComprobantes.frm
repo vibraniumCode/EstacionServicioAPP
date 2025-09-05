@@ -47,6 +47,7 @@ Begin VB.Form frmComprobantes
          Left            =   6480
          TabIndex        =   7
          Top             =   3120
+         Visible         =   0   'False
          Width           =   1215
       End
       Begin VB.CommandButton Command1 
@@ -64,6 +65,7 @@ Begin VB.Form frmComprobantes
          Left            =   6480
          TabIndex        =   6
          Top             =   4800
+         Visible         =   0   'False
          Width           =   1215
       End
       Begin VB.CommandButton btnD 
@@ -184,22 +186,58 @@ Private Sub btnH_Click()
 txtTicket2.Enabled = True
 End Sub
 
+'Private Sub btnPrint_Click()
+'If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
+''    MsgBox "Verificando impresora...", vbInformation, "ESAPP"
+'    Dim X As Printer
+'    For Each X In Printers
+'    If X.DeviceName = "POS-80-Series" Then
+'        MsgBox "Imprimiendo comprobante"
+''        Printer.FontName = "SinSum"
+''        Printer.FontSize = 8
+'        Printer.FontBold = True
+''antes
+''        Printer.Print txtTicket2.Text
+''        Set Printer = X
+''despues
+'        Set Printer = X
+'        Printer.Print txtTicket2.Text
+'        Printer.EndDoc
+'
+'    Exit For
+'    End If
+'    Next
+'End If
+'End Sub
 Private Sub btnPrint_Click()
-If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
-'    MsgBox "Verificando impresora...", vbInformation, "ESAPP"
-    Dim X As Printer
-    For Each X In Printers
-    If X.DeviceName = "POS-80-Series" Then
-        MsgBox "Imprimiendo comprobante"
-'        Printer.FontName = "SinSum"
-'        Printer.FontSize = 8
-        Printer.FontBold = True
-        Printer.Print txtTicket2.Text
-        Set Printer = X
-    Exit For
+    If MsgBox("¿Desea imprimir el ticket?", vbYesNo + vbQuestion, "Confirmación") = vbYes Then
+        Dim X As Printer
+        For Each X In Printers
+            If X.DeviceName = "POS-80-Series" Then
+                Set Printer = X
+                MsgBox "Imprimiendo comprobante"
+                
+                ' Fuente estándar y compatible con impresoras térmicas
+                Printer.FontName = "Courier New"
+                Printer.FontSize = 8
+                Printer.FontBold = True
+
+                ' Imprimir contenido
+                Printer.Print txtTicket2.Text
+
+                ' Avanzar el papel para evitar corte prematuro
+                Printer.Print String(5, vbCrLf)
+
+                ' Comando de corte (si la impresora lo soporta)
+                Printer.Print Chr(&H1B) & "m"
+
+                ' Finalizar trabajo de impresión
+                Printer.EndDoc
+
+                Exit For
+            End If
+        Next
     End If
-    Next
-End If
 End Sub
 
 Private Sub Command1_Click()
@@ -290,16 +328,16 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     'txtTicket2.SelBold = True
     txtTicket2.SelText = txtTicket2.SelText + "                     PETRORAFAELA  S R L" + vbCrLf
     'txtTicket2.SelBold = False
-    txtTicket2.SelText = txtTicket2.SelText + "--------------------------------------------------------------------" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "----------------------------------------------------------" + vbCrLf
 '    'txtTicket2.SelBold = True
-    txtTicket2.SelText = txtTicket2.SelText + "TIQUET FACTURA A (Cód.081) N°                         "
+    txtTicket2.SelText = txtTicket2.SelText + "TIQUET FACTURA A (Cód.081) N°"
 '    'txtTicket2.SelBold = False
     txtTicket2.SelText = txtTicket2.SelText + CStr(Format(rs(0), "0000")) & "-" + CStr(Format(rs(1), "00000000")) + vbCrLf
 '    txtTicket2.SelText = txtTicket2.SelText + "                                                            Fecha " + rs(9) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("", "Fecha " + rs(9)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + FormatearLinea68("", "Hora " + rs(10)) + vbCrLf
 '    txtTicket2.SelText = txtTicket2.SelText + "                                                       Hora " + rs(10) + vbCrLf
-    txtTicket2.SelText = txtTicket2.SelText + "--------------------------------------------------------------------" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "----------------------------------------------------------" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + UCase(rs(11)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "C.U.I.T. Nro.: " + rs(12) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "IVA RESPONSABLE INSCRIPTO" + vbCrLf
@@ -310,7 +348,7 @@ rs.Open sql, conn, adOpenStatic, adLockReadOnly
     'txtTicket2.SelBold = True
     txtTicket2.SelText = txtTicket2.SelText + "                     PETRORAFAELA  S R L" + vbCrLf
     'txtTicket2.SelBold = False
-    txtTicket2.SelText = txtTicket2.SelText + "--------------------------------------------------------------------" + vbCrLf
+    txtTicket2.SelText = txtTicket2.SelText + "----------------------------------------------------------" + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + CStr(rs(16)) + " x " + CStr(rs(17)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "(" + CStr(rs(14)) + ")" + UCase(rs(15)) + vbCrLf
     txtTicket2.SelText = txtTicket2.SelText + "ITC Unit.x Lt: " + CStr(rs(20)) + vbCrLf
@@ -552,8 +590,8 @@ End Sub
 
 Function FormatearLinea68(ByVal concepto As String, ByVal importe As String) As String
     Dim totalLength As Integer
-    totalLength = 68
-    
+    'totalLength = 68
+    totalLength = 42
     Dim espacios As String
     Dim textoFinal As String
     

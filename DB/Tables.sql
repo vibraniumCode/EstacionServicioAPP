@@ -130,7 +130,7 @@ CREATE TABLE Empresa_Impuesto (
     id INT PRIMARY KEY IDENTITY(1,1),
     idEmpresa INT NOT NULL,
     idTipo INT NOT NULL,
-    monto NUMERIC(9,4) NOT NULL,
+    monto NUMERIC(18,2) NOT NULL,
     fechaOperacion DATE NOT NULL,
 
     FOREIGN KEY (idEmpresa) REFERENCES Empresas(id),

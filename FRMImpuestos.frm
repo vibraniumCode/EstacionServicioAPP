@@ -258,7 +258,11 @@ Dim idEmpresaSeleccionado As Integer
         Exit Sub
     End If
 
+    Dim sql As String
+    sql = "exec sp_impuestos " & idImpuestoSeleccionado & ",null," & Replace(Impuestos.Monto, ",", ".") & ",'" & Format(txtFecOperacion.Text, "yyyymmdd") & "'," & idEmpresaSeleccionado & ",NULL,NULL,'MOD'"
+    
     rs.Open "exec sp_impuestos " & idImpuestoSeleccionado & ",null," & Replace(Impuestos.Monto, ",", ".") & ",'" & Format(txtFecOperacion.Text, "yyyymmdd") & "'," & idEmpresaSeleccionado & ",NULL,NULL,'MOD'", conn, adOpenStatic, adLockReadOnly
+    
     
     MsgBox rs(1), vbInformation, "ESAPP"
     If rs(0) = 1 Then
@@ -341,7 +345,7 @@ Public Sub CargarImpuesto()
     On Error GoTo ErrHandler
     
     cboImpuestos.Clear
-    Dim SQL As String
+    Dim sql As String
     
     rs.Open "select distinct t.id, t.tipo from Empresa_Impuesto ei join Timpuestos t on t.id = ei.idTipo where ei.idEmpresa = " & cboEstaciones.ItemData(cboEstaciones.ListIndex) & " ORDER BY id", conn, adOpenStatic, adLockReadOnly
     

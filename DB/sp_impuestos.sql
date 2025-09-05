@@ -10,7 +10,7 @@ CREATE PROCEDURE sp_impuestos
 (
 	@idImpuesto INT       = NULL,
 	@impuesto VARCHAR(50) = NULL,
-	@monto MONEY          = NULL,
+	@monto NUMERIC(18,2)  = NULL,
 	@fechaOperacion DATE  = NULL,
 	@empresa INT          = NULL,
 	@anioVB INT           = NULL,
@@ -49,7 +49,7 @@ BEGIN
 			INSERT INTO Empresa_Impuesto(idEmpresa, idTipo, monto, fechaOperacion)
 				VALUES (@empresa, @idImpuesto, @monto, @fechaOperacion);
 
-			SELECT 'Monto cargado correctamente' AS Mensaje
+			SELECT 0,'Monto cargado correctamente' AS Mensaje
 			RETURN;
 		END
 	 
